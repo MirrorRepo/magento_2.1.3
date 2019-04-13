@@ -1,0 +1,363 @@
+
+/* ------------------------------------------------
+                 Common  CSS 
+--------------------------------------------------*/
+
+*{box-sizing:border-box;}
+
+*:after, *:before {
+    box-sizing: border-box;
+}
+*:after, *:before {
+    box-sizing: border-box;
+}
+
+body {
+  color: #414142;
+  font: 12px/1.55 Arial,Helvetica,sans-serif;
+  overflow-x:hidden; 
+}
+
+
+/* ------------------------------------------------
+                 Header  CSS 
+--------------------------------------------------*/
+
+.header { 
+  display: none; 
+}
+
+.nav-sections { 
+  background: #e0dfe0;
+  float: left;
+  height: 140px;
+  width: 100%; 
+}
+
+.navigation .ui-menu li {
+  float: left;
+  position: relative;
+}
+
+.section-item-content.nav-sections-item-content {
+    margin: 0 auto;
+    width: 960px;
+}
+
+.navigation .ui-menu li a {
+  background:url("images/dwn.png") no-repeat scroll center bottom;
+  color: #9d9d9d !important;
+  float: left;
+  font-family: arial narrow;
+  font-size: 25px;
+  font-weight: normal;
+  margin-bottom: 12px;
+  text-align: center;
+  width: 115px;
+  padding-bottom: 13px !important;
+  padding-top: 82px !important;
+  line-height:37px !important 
+}
+
+.navigation .ui-menu li a:hover,.navigation .ui-menu li a:focus{
+  color:#d96708 !important;
+  background:transparent !important; 
+} 
+
+.navigation .level0 .submenu a:hover, .navigation .level0 .submenu a.ui-state-focus {
+  background:transparent;
+  color: #d96708 !important;
+}
+
+.navigation {
+  background: transparent;
+}
+
+.nav-sections nav.navigation {
+  float: left;
+  width: 40%;
+}
+
+.nav-sections .logo {
+  float: left;
+  margin: 0;
+  width: 17%;
+}
+
+.nav-sections .logo {
+  margin-bottom: 0;
+  padding-top: 20px;
+}
+
+nav.navigation ul.submenu {
+  background: #fff;
+  border-bottom: 3px solid #0d4e47 ;
+  border-top: 3px solid #e1931e !important;
+  float: left;
+  width: 462px;
+  box-shadow: 0 0 4px #000 !important;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+}
+
+nav.navigation ul.submenu  li {
+  background: #fff;
+  border-right: 1px solid #ccc;
+  float: left;
+  height: 45px;
+  margin: 0;
+  padding-bottom: 0;
+  width: 153px;
+}
+
+nav.navigation ul.submenu  li a {
+  clear: both;
+  padding-left: 5px;
+  padding-top: 10px;
+  width: 165px;
+}
+
+#header-cart-top { 
+  background: #ffffff; 
+  border-radius: 10px 10px 0 0; 
+  margin: 0 auto; 
+  padding: 6px 7px 2px; 
+  right: 64px; 
+  top: 110px; 
+}
+
+.user-links a { 
+  border-right: 1px solid #000000 ; 
+  color: #333 !important;
+  padding: 0 5px ; 
+}
+
+.user-links a + a {
+  border-right:none;
+}
+
+.user-links {
+  text-align: center;
+}
+
+#header-cart-top a {
+  color: #333; 
+  font-weight: 600; 
+}  
+
+.navigation .submenu li { 
+  padding: 0; 
+  width: 100%;
+}
+
+.navigation .submenu li a {
+  background:none; 
+  float: left; 
+  font-family: arial; 
+  font-size: 14px;
+  margin: 0; 
+  padding: 0 10px !important;
+  text-align: left;
+  width: 100%;
+}
+
+.address-section {
+  color: #ff6600;
+  float: left;
+  width: 100%;
+}
+
+.timing-section-footer h4 {
+  color: #339966;
+  font-size: 18px;
+  margin-bottom: 10px; margin-top: 0;
+}
+
+.bugs {
+  display: none;
+} 
+
+
+/* ------------------------------------------------
+                 Search  CSS 
+--------------------------------------------------*/
+
+.color-bar-header {
+    margin-top: 0px;
+    float: left;
+    max-width: 100%;
+    width: 645px;
+}
+.headr-srch {
+  float: left;
+  margin-bottom: 15px;
+  margin-left: 46px;
+  margin-top: 35px;
+  padding: 0 35px 0 5px;
+}
+
+.hedr-inner {
+  margin: 0 auto;
+  width: 1190px;
+}
+
+input#search {
+  border: medium none;
+  box-shadow: 0 0 0;
+  color: #000;
+  float: left;
+  font-size: 40px;
+  font-weight: bold;
+  height:90px;
+  line-height: 15px;
+  padding-bottom: 15px;
+  padding-top: 15px !important;
+  text-transform: uppercase;
+  width: 390px; 
+  background: rgba(5, 5, 5, 0.02);
+}
+
+.headr-srch .action.search {
+  border: none;
+  box-shadow: none;
+  float: left;
+  cursor: pointer;
+  margin: 0;
+  overflow: visible;
+  padding: 15px 0  0 0;
+  width: auto;
+  height:90px;
+  background: rgba(5, 5, 5, 0.02); 
+}
+
+.headr-srch .actions {
+  float: left;
+}
+
+#search_mini_form .field.search .nested {
+  display: none;
+}
+
+.field.search {
+  position: relative;
+}
+
+.field.search .search-autocomplete {
+  margin-top: 0;
+  position: absolute;
+  top: 90px;
+  width: 446px !important;
+  z-index: 9999;
+  background:rgba(5, 5, 5, 0.02);
+}
+
+.field.search .search-autocomplete  ul {
+  border:1px solid #FAFAFA;
+  border-top:transparent;
+}
+.search-autocomplete ul li {
+   background:rgba(5, 5, 5, 0.02);
+}
+.main {
+  background: #fff;
+  margin: 0 auto;
+  min-height: 400px;
+  text-align: left;
+  width: 1000px !important;
+}
+/*----------- color header -------*/
+
+.color-bar-header ul {
+  margin:0;
+  list-style:none ; 
+}
+
+.hedr-inner .color-bar-header .swatches {
+  padding: 0 0 0 5px;
+}
+
+.color-bar-header .swatches label {
+  color: #979797;
+  float: left;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 100%;
+}
+
+
+/* ------------------------------------------------
+                 Footer  CSS 
+--------------------------------------------------*/
+
+footer.page-footer {
+  background:#2b2b2b url("images/footer-rep.jpg") repeat-x scroll center top; 
+  padding-bottom:0px;
+  margin:0; 
+}
+
+footer .footer.content {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 1000px;
+}
+
+footer .left-link-section {
+  float: left;
+  width: 45%;
+}
+
+footer  .footer-center-section {
+  float: left;
+  width: 25%;
+}
+
+footer .right-footer-section {
+  float: left;
+  padding-left: 50px;
+  width: 30%;
+}
+
+footer .footer-left-links {
+  float: left;
+}
+
+footer .footer.content:before, footer .footer.content:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.footer-left-links a {
+  color: #fff;
+  font-family: arial;
+  font-size: 12px;
+}
+
+.footer_hdr strong {
+  color: #ffff00;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.footer-left-links h2 {
+  margin: 0;
+}
+
+.social-icons-footer {
+  float: right;
+}
+
+footer #yelp-biz-badge-fsc-tuwO21ke6BaGfK_w1TT9dQ , footer .social-icons-footer{
+  padding-top: 30px;
+}
+
+footer ul.footer.links {
+  display: none;
+}
+
+.copyright {
+  width: 100%; 
+  background:#2b2b2b; 
+}

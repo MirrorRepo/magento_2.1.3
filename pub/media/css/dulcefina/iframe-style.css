@@ -1,0 +1,312 @@
+@font-face {
+  font-family: "Trebuchet MS";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/TrebuchetMS.eot?#iefix") format("embedded-opentype"), url("../fonts/TrebuchetMS.woff2") format("woff2"), url("../fonts/TrebuchetMS.woff") format("woff"), url("../fonts/TrebuchetMS.ttf") format("truetype");
+}
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:400,700');
+
+*:after, *:before {
+  box-sizing: border-box;
+}
+
+html,body {
+  height:auto;
+}
+.breadcrumbs {
+  display:none !important 
+}
+.product.attibute.overview .value {display: none !important;}
+
+.footer-outer-top, .product-addto-links, .action.mailto.friend, .product-reviews-summary{display:none;}
+.more_info_outer { display: block !important;}
+section.home-search-wrapper {display: none;}
+.page-title-wrapper.product {
+  display: none;
+}
+.page-wrapper {
+  padding: 40px 30px 0;
+}
+.page-layout-1column .product.media {
+  width: 45%;
+}
+.page-layout-1column .product-info-main {
+  width:52%;
+  padding-left:15px;
+}
+.gallery_thumbnail_outer {
+  border: 1px solid #e6e6e6;
+  position:relative;
+}
+.product_detail_page_flag {
+  position: absolute;
+  width: 120px;
+  z-index: 99;
+}
+.product.media  .item_list {
+  padding-top: 20px;
+}
+.product.media .item_list.item_list_outer div {
+  float: left;
+  padding: 0 15px 0 0;
+}
+.product.media .item_list_img {
+  float: left;
+  padding: 0 2px 0 0 !important;
+}
+.product.media .item_list_img img {
+  height: 25px;
+}
+.catalog-product-view .social-icon-prduct-page {
+  border-bottom: 1px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf;
+  float: left;
+  margin-top: 10px;
+  padding: 10px 0 8px;
+  width: 100%;
+  display:none !important 
+}
+.product-info-stock-sku h1 {
+  color: #595858;
+ /*  font-family: 'Oleo Script Swash Caps', cursive; */
+  font-family:"Trebuchet MS"; 
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+.price-box .price-wrapper span.price {
+  color: #bf3d69;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  display:block;
+  width:100%;
+  border-top:1px solid #dfdfdf;
+  border-bottom:1px solid #dfdfdf;
+  padding:15px 0;
+  margin:20px 0;
+  font-family: "Trebuchet MS";
+}
+.prdct-attribute, .prdct-attribute span {
+  color: #6e6e6e;
+  font-family: "Trebuchet MS";
+  font-size: 15px;
+}
+.ui-spinner {
+  float: left;
+  height: auto !important;
+  position: relative;
+}
+.ui-spinner .ui-spinner-button.ui-spinner-up , .ui-spinner .ui-spinner-button.ui-spinner-down {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  z-index: 99;
+  cursor:pointer; 
+  color:rgba(0,0,0,.7);
+}
+.ui-spinner input.qty {
+  padding-right: 20px;
+  width: 65px !important;
+}
+.ui-spinner .ui-spinner-button.ui-spinner-down {
+  bottom: 5px;
+  top: auto;
+}
+.product-info-main .box-tocart .input-text.qty, .product-options-bottom .box-tocart .input-text.qty {
+  height: 44px;
+}
+.ui-spinner.ui-widget.ui-widget-content.ui-corner-all input:focus {
+  box-shadow: none !important;
+}
+#product-addtocart-button {
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid #bf3d69;
+  border-radius: 0;
+  color: #bf3d69;
+  font-family: "Trebuchet MS";
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 15px;
+  text-shadow: 0 0 0 transparent;
+  text-transform: uppercase;
+}
+#product-addtocart-button:hover,#product-addtocart-button:focus {
+  background:#bf3d69;
+  border: 1px solid #bf3d69;
+  border-radius: 0;
+  color: #fff;
+}
+.product-add-form .box-tocart label.label {
+  color: #6e6e6e;
+  font-family: "Trebuchet MS";
+  font-size: 15px;
+  font-weight: normal !important;
+}
+.product-social-links .stock {
+  color: #6e6e6e;
+  font-family: "Trebuchet MS";
+  font-size: 13px;
+  font-weight: 400 !important;
+}
+.product-social-links .product.info.detailed {
+  float: left;
+  margin-bottom: 0;
+  margin-top: 30px;
+  width: 100%;
+  display:none !important;
+}
+.product.data.items > .item.title:not(.disabled) > .switch:active,
+.product.data.items > .item.title.active > .switch,
+.product.data.items > .item.title.active > .switch:focus,
+.product.data.items > .item.title.active > .switch:hover,
+.product.data.items > .item.title > .switch {
+  height: 100%;
+}
+.product.data.items > .item.title.active .switch {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: none;
+  border-top: 3px solid #de9aa7;
+  color: #de9aa7;
+  padding-left:15px;
+  padding-right:15px;
+}
+.product.data.items .item.title .switch {
+  border: none;
+  background: none;
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size:20px;
+  color: #6e6e6e;
+  font-weight: 400;
+  line-height: 37px;
+}
+.item.title.active .switch:focus {
+  color: #de9aa7;
+}
+.product.data.items .item.content {
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  color: #6e6e6e;
+  font-size: 16px;
+  margin-top: 48px;
+  font-family: "Trebuchet MS";
+}
+.product .item_list span {
+  color: #6e6e6e;
+  font-family: "Trebuchet MS";
+  font-size: 15.53px;
+  text-align: center;
+  font-weight: 700;
+}
+.page-layout-category-product-page .product .item_list {
+  padding-top: 20px;
+}
+.earn_point_outer .gift_icon {
+  background: url("../images/gift-icon.png") no-repeat;
+  float: left;
+  font-family: "Trebuchet MS";
+  font-size: 16px;
+  font-weight: 700;
+  margin-top:10px;
+  padding: 0  0 12px 0;
+  color: #6e6e6e;
+  background-position: left;
+  padding-left: 35px;
+  background-position:0 7%;
+}
+.ui-spinner.ui-widget.ui-widget-content.ui-corner-all a:hover,
+.ui-spinner.ui-widget.ui-widget-content.ui-corner-all a:focus {
+  text-decoration:none; 
+}
+.product-add-form .more_info_outer {
+  display: block !important;
+  float: left;
+  margin: 47px 0 0 16px;
+}
+
+.product-add-form .more_info_outer a {
+  display:inline-block; 
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: 1px solid #6e6e6e;
+  border-radius: 0;
+  color: #6e6e6e;
+  font-family: "Trebuchet MS";
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 15px;
+  text-shadow: 0 0 0 transparent;
+  text-transform: uppercase;
+}
+
+.product-add-form .more_info_outer a:hover {
+  background: #bf3d69;
+  border: 1px solid #bf3d69;
+  color: #fff;
+  text-decoration:none; 
+
+}
+.product-add-form .box-tocart {
+  float: left;
+}
+.product-social-links {
+  clear: both;
+}
+.page-banner-text.category-banner-text.quickview {
+  display:none; 
+}
+
+.paypal.checkout {
+    display: none !important;
+}
+
+h1.page-title {
+    display: none;
+}
+.prdct-attribute .cat_outer,.prdct-attribute .sub_cat_outer {display: none;}
+
+.product.attibute.overview .value {display: none !important;}
+
+/* 
+@media  (max-width:991px) { 
+  .page-layout-1column .product.media {width: 100%;}
+  .page-layout-1column .product.media .fotorama__stage { margin: auto;}
+  .page-layout-1column .product-info-main {
+  float: left;
+  padding-left: 0;
+  width: 100%;
+}
+  .earn_point_outer {float: left; padding-bottom: 20px; width: 100%;padding-top:5px; }
+  .product-add-form .box-tocart {
+  float: left;
+  margin-bottom: 0;
+}
+.box-tocart .field.qty {
+  float: left;
+}
+.box-tocart .actions {
+  float: left;
+}
+
+}
+
+@media  (max-width:767px) {
+  .box-tocart .actions {
+  margin-top:25px;
+}
+} 
+@media  (max-width:639px) { 
+
+.product-add-form .more_info_outer {
+  margin: 0 0 15px;
+  width: 100%;
+}
+.product-info-stock-sku h1 {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 18px 0 0;
+}
+
+}
+
+ */

@@ -1,0 +1,19 @@
+<?php $my_url = $_SERVER["REQUEST_URI"]; 
+	$url_pieces = explode("/", $my_url); 
+	$url = $url_pieces[1]; ?>
+<div class="page_outer_main page_outer_main">
+	<div class="banner-inner-content page-inner-content">
+		<div class="container">
+			<div class="page-banner-text category-banner-text <?php echo $url;?>"><?php //echo $country_name = $category->getName(); ?>
+<?php echo $this->getLayout()->createBlock("Magento\Theme\Block\Html\Title")->setTemplate("Magento_Theme::html/title.phtml")->toHtml(); ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php ///echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('category-page-banner')->toHtml();?>
+<style>
+.page_outer_main.page_outer_main .contact span {
+    display: block !important;
+}
+</style>

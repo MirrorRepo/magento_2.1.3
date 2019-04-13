@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Jet
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Ced_Jet::Jet"
+         title="Jet"
+         translate="title"
+         module="Ced_Jet"
+         sortOrder="14"
+         resource="Ced_Jet::Jet"
+         />
+
+         <add id="Ced_Jet::jet_configuration"
+             title="Jet Configuration"
+             translate="title"
+             module="Ced_Jet"
+             sortOrder="1"
+             parent="Ced_Jet::Jet"
+             resource="Ced_Jet::jet_configuration"
+             />
+
+             <add id="Ced_Jet::configuration"
+                 title="Configuration" 
+                 module="Ced_Jet"
+                 sortOrder="1" 
+                 parent="Ced_Jet::jet_configuration" 
+                 action="adminhtml/system_config/edit/section/jetconfiguration"
+                 resource="Ced_Jet::configuration"/>
+
+         <add id="Ced_Jet::jet_category"
+             title="Jet Category"
+             translate="title"
+             module="Ced_Jet"
+             sortOrder="2"
+             parent="Ced_Jet::Jet"
+             resource="Ced_Jet::jet_catagory"
+             />
+
+             <add id="Ced_Jet::jet_categories"
+                 title="Jet Categories"
+                 translate="title"
+                 module="Ced_Jet"
+                 sortOrder="1"
+                 parent="Ced_Jet::jet_category"
+                 action="jet/categories/index"
+                 resource="Ced_Jet::jet_categories"
+                 />
+
+             <add id="Ced_Jet::jet_category_mapping"
+                 title="Jet Category Mapping"
+                 translate="title"
+                 module="Ced_Jet"
+                 sortOrder="2"
+                 parent="Ced_Jet::jet_category"
+                 action="catalog/category/index"
+                 resource="Ced_Jet::jet_category_mapping"
+                 />
+
+         <add id="Ced_Jet::jet_products"
+             title="Jet Products"
+             translate="title"
+             module="Ced_Jet"
+             sortOrder="3"
+             parent="Ced_Jet::Jet"
+             resource="Ced_Jet::jet_products"
+             />
+
+             <add id="Ced_Jet::upload_products"
+                 title="Upload Products"
+                 translate="title"
+                 module="Ced_Jet"
+                 sortOrder="1"
+                 parent="Ced_Jet::jet_products"
+                 action="jet/jetrequest/uploadproduct"
+                 resource="Ced_Jet::upload_products"
+                 />
+
+             <add id="Ced_Jet::rejected_files"
+                 title="Rejected Files"
+                 translate="title"
+                 module="Ced_Jet"
+                 sortOrder="2"
+                 parent="Ced_Jet::jet_products"
+                 action="jet/jetproduct/rejected"
+                 resource="Ced_Jet::rejected_files"
+                 />
+
+             <add id="Ced_Jet::vanished_product"
+                 title="Vanished Products" 
+                 translate="title" 
+                 module="Ced_Jet" 
+                 sortOrder="3" 
+                 parent="Ced_Jet::jet_products" 
+                 action="jet/jetproduct/vanishedproduct" 
+                 resource="Ced_Jet::vanished_product" 
+                 />
+
+         <add id="Ced_Jet::jet_knowledge"
+             title="Jet Knowledge Base"
+             translate="title"
+             module="Ced_Jet"
+             sortOrder="4"
+             parent="Ced_Jet::Jet"
+             resource="Ced_Jet::jet_knowledge"
+             />
+
+             <add id="Ced_Jet::jet_knowledge_base" 
+                 title="Jet Knowledge Base"
+                 module="Ced_Jet" 
+                 sortOrder="1" 
+                 parent="Ced_Jet::jet_knowledge" 
+                 action="jet/request/help"
+                 resource="Ced_Jet::jet_knowledge_base"/>
+
+         <add id="Ced_Jet::jet_orders"
+             title="Jet Orders"
+             translate="title"
+             module="Ced_Jet"
+             sortOrder="5"
+             parent="Ced_Jet::Jet"
+             resource="Ced_Jet::jet_orders"
+             />
+
+             <add id="Ced_Jet::view_jet_orders"
+                 title="View jet orders"
+                 translate="title"
+                 module="Ced_Jet"
+                 sortOrder="1"
+                 parent="Ced_Jet::jet_orders"
+                 action="jet/order/listorder"
+                 resource="Ced_Jet::view_jet_orders"
+                 />
+
+             <add id="Ced_Jet::view_failed_imported_jet_orders_log"
+                 title="Failed/Pending Jet Orders"
+                 translate="title"
+                 module="Ced_Jet"
+                 sortOrder="2"
+                 parent="Ced_Jet::jet_orders"
+                 action="jet/failed/orders"
+                 resource="Ced_Jet::view_failed_imported_jet_orders_log"
+                 />
+
+             <add id="Ced_Jet::return" 
+                 title="Return" 
+                 module="Ced_Jet"
+                 sortOrder="3" 
+                 parent="Ced_Jet::jet_orders" 
+                 action="jet/orderreturn/index"
+                 resource="Ced_Jet::view_jet_orders"
+                 />
+
+             <add id="Ced_Jet::refund"
+                 title="Refund"
+                 module="Ced_Jet"
+                 sortOrder="4"
+                 parent="Ced_Jet::jet_orders"
+                 action="jet/refund/index"
+                 resource="Ced_Jet::view_jet_orders"
+                 />
+
+         <add id="Ced_Jet::jet_attributes"
+             title="Jet Attributes"
+             translate="title"
+             module="Ced_Jet"
+             sortOrder="6"
+             parent="Ced_Jet::Jet"
+             resource="Ced_Jet::jet_attributes"
+             />
+
+             <add id="Ced_Jet::jet_attribute_listing"
+                 title="Jet Attribute Listing" 
+                 module="Ced_Jet"
+                 sortOrder="1" 
+                 parent="Ced_Jet::jet_attributes" 
+                 action="jet/jetattribute/index/"
+                 resource="Ced_Jet::jet_attribute_listing"
+                 />
+    </menu>
+</config>

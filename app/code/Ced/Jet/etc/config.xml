@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Jet
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Store/etc/config.xsd">
+  <default>
+  	<jetconfiguration>
+    	<jetsetting>									
+    		<enable>1</enable>								
+    		<api_url>https://merchant-api.jet.com/api</api_url>
+        </jetsetting>
+        <product_edit>
+	        <auto_syn>0</auto_syn>
+          <update_price>1</update_price>
+          <update_inventory>1</update_inventory>
+          <update_image>0</update_image>
+          <update_detail>0</update_detail>
+          <archive_child_product>0</archive_child_product>
+        </product_edit>
+  	    <productinfo_map>
+  		    <jet_title>name</jet_title>
+            <jet_description>description</jet_description>
+            <jet_product_price>final_price</jet_product_price>
+            <jet_brand>jet_brand</jet_brand>
+            <jet_multipack_quantity>1</jet_multipack_quantity>
+  		    <jet_manufacturer_part_number>mfr_part_number</jet_manufacturer_part_number>
+  		    <jet_bullets>bullets</jet_bullets>
+        </productinfo_map>
+        <jet_order>
+            <order_autocancel>1</order_autocancel>
+        </jet_order>
+  	</jetconfiguration> 
+    <carriers>
+      <shipjetcom>
+        <active>1</active>
+        <sallowspecific>0</sallowspecific>
+        <name>Jet.com Shipping</name>
+        <title>Jet.com Shipping</title>
+        <model>Ced\Jet\Model\Carrier\Shipjetcom</model>
+      </shipjetcom>
+    </carriers> 
+    <payment>
+      <payjetcom>
+        <active>1</active>
+        <model>Ced\Jet\Model\Payment\Payjetcom</model>
+        <order_status>Processing</order_status>
+        <title>Jet.com</title>
+        <payment_action>sale</payment_action>
+        <allowspecific>0</allowspecific>
+      </payjetcom>
+    </payment>
+  </default> 
+</config>

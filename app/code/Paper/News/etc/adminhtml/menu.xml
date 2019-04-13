@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+	  <add id="Paper_News::paper" title="Paper" translate="title" module="Paper_News" sortOrder="90" dependsOnModule="Paper_News" resource="Paper_News::paper"/>
+	  <add id="Paper_News::news" title="News" translate="title" module="Paper_News" parent="Paper_News::paper" sortOrder="50" dependsOnModule="Paper_News" resource="Paper_News::news"/>
+	  <add id="Paper_News::news_allnews" title="All News" translate="title" module="Paper_News" parent="Paper_News::news" sortOrder="10" dependsOnModule="Paper_News" action="news/allnews" resource="Paper_News::news_allnews"/>
+		<add id="Paper_News::settings" title="Settings" translate="title" module="Paper_News" parent="Paper_News::paper" sortOrder="60" dependsOnModule="Paper_News" resource="Paper_News::settings"/>
+	  <add id="Paper_News::news_config" title="Configuration" translate="title" module="Paper_News" parent="Paper_News::settings" sortOrder="10" dependsOnModule="Paper_News" action="adminhtml/system_config/edit/section/Paper_News" resource="Paper_News::news_config"/>
+	</menu>
+</config>

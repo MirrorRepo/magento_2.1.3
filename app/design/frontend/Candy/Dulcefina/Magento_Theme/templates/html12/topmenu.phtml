@@ -1,0 +1,152 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+
+<!--nav class="navigation" data-action="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <?php /* @escapeNotVerified */ //echo $_menu; ?>
+        <?php /* @escapeNotVerified */ //echo $block->getChildHtml(); ?>
+      </ul>
+</nav --> 
+<nav class="navigation" data-action="navigation">
+<ul>
+	
+<?php 
+	$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
+	
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory'); ?>
+	<li class="level0 nav-1 first level-top parent menu-categories">
+			<a href="#" class="level-top"><span>Categories</span></a>
+			<ul class="level0 submenu sub-menu-categories-outer">
+				<?php
+				foreach($categoryHelper->getStoreCategories() as $category){
+					$category_name = $category->getName();
+					$category_url = $categoryHelper->getCategoryUrl($category);
+					if($category->getId() != 8 && $category->getId() != 110){ 
+				?>
+				<li class="level1 nav-1-1 first sub-menu-categories"><a href="<?php echo $category_url ; ?>"><span><?php echo $category_name; ?></span></a></li>
+			
+				<?php } } ?>
+			</ul>
+			
+	</li>
+	<?php
+	foreach($categoryHelper->getStoreCategories() as $category): 
+		$category_name = $category->getName();
+		$category_url = $categoryHelper->getCategoryUrl($category);
+	
+	// Category ID 8 Countries List Menu	
+		
+	if($category->getId() == 8){ 
+		$category_name = $category->getName();
+		$category_url = $categoryHelper->getCategoryUrl($category);
+		$category_name_lower = strtolower($category_name);	?>	
+		<li class="level0 nav-1 first level-top parent menu-<?php echo $category_name_lower; ?>">
+			<a href="<?php echo $category_url; ?>" class="level-top"><span><?php echo $category_name; ?></span></a>
+			
+	<?php
+		$subcategories = $category->getChildrenCategories();
+		if (count($subcategories) > 0){ ?>
+		<ul class="level0 submenu sub-menu-<?php echo $category_name_lower; ?>-outer">
+		<?php			
+			foreach($subcategories as $subcategory){
+				$subcategory_id = $subcategory->getId();
+				
+				$object_manager = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);
+				
+				$subcategory_image = "";
+				if($object_manager->getImageUrl()){   
+					$subcategory_image = $object_manager->getImageUrl();	 
+				}else{
+					$subcategory_image  = $block->getUrl('').'app/design/frontend/Tpss/Dulcefina/media/cat_placeholder.jpg';
+				}
+
+				$page_title = $subcategory->getMetaTitle();
+				
+											
+				$subcategory_url = $subcategory->getUrl();
+				$subcategory_name = $subcategory->getName(); 
+				$category_name_lower = strtolower($category_name);
+			?>
+			<li class="level1 nav-1-1 first sub-menu-<?php echo $category_name_lower; ?>"><a href="<?php echo $subcategory_url; ?>"><img src="<?php echo $subcategory_image; ?>" alt="<?php echo $subcategory_name; ?>" width="50px" class="menu_flg" height="50px"><span><?php echo $subcategory_name; ?></span></a></li>
+		<?php } ?>
+			</ul>
+		<?php } ?>
+			</li>
+		
+		<?php
+	}
+	
+	
+	?>
+	 
+	
+<?php endforeach; ?>
+	<li class="level0 nav-20 last level-top ui-menu-item" role="presentation">
+			<a href="<?php echo $block->getUrl(''); ?>#/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem">
+				<span>Blog</span>
+			</a>
+	</li>
+</ul>
+</nav>
+
+
+     
+        
+    <a class="logo" href="<?php echo $block->getUrl(''); ?>" title="" style="display: block">
+        <img src="<?php echo $block->getUrl(''); ?>pub/static/frontend/Magento/luma/en_US/images/logo.png" />      
+    </a>
+        
+	<nav class="navigation" data-action="navigation">
+		<ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>     
+			   
+			 <li class="level0 nav-20 last level-top ui-menu-item" role="presentation">
+				<a href="<?php echo $block->getUrl(''); ?>Sarasota/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem">
+					<span>Sarasota</span>
+				</a>
+			</li>
+			
+			 <li class="level0 nav-20 last level-top ui-menu-item" role="presentation">
+				<a href="<?php echo $block->getUrl(''); ?>candy_buffet/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem">
+					<span>Buffet</span>
+				</a>
+			</li>
+			
+			 <li class="level0 nav-20 last level-top ui-menu-item" role="presentation">
+				<a href="<?php echo $block->getUrl(''); ?>about-us/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem">
+					<span>About</span>
+				</a>
+			</li>
+		   
+		</ul>
+	</nav>
+
+<div class="headr-cart" id="header-cart-top" style="display:block;width: 130px; position: absolute; left: 1076.5px;">
+<a style="padding-left: 3px;" href="<?php echo $block->getUrl(''); ?>checkout/cart/">
+<img src="<?php echo $block->getUrl(''); ?>pub/static/frontend/Magento/luma/en_US/images/cart.png" alt=""></a>
+<a style="padding-left: 3px;" href="<?php echo $block->getUrl(''); ?>checkout/cart/">Checkout: </a>
+<div style="clear:both;"></div>
+<div class="headr-links">
+ <div class="user-links">
+ <a class="user-links-first" style="padding-left: 10px;" href="<?php echo $block->getUrl(''); ?>customer/account/login/">Login</a>
+ <a style="padding-right: 10px;" href="<?php echo $block->getUrl(''); ?>customer/account/create/">Register</a>
+</div>
+ </div>
+</div>

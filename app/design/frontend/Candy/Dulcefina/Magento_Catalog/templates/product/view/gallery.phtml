@@ -1,0 +1,211 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$categories = $product->getCategoryIds(); /*will return category ids array*/
+foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+	if($cat->getParentId() == 8){
+		$country_name = $cat->getName();
+	}
+	
+}
+$country_name_lower = strtolower($country_name);
+//if($cat->getImageUrl()){
+if(!empty($country_name_lower)){
+	$country_name_image =  $block->getUrl('').'pub/media/css/category-flag/'.$country_name_lower.'.png';
+	}else{
+	$country_name_image  = $block->getUrl('').'pub/media/images/dulcefina/cat_placeholder_flag.png';
+}
+
+?>
+<!--custom code by tpss-->
+<!--div class="image_short_description"><?php echo $product->getData('short_description'); ?></div-->
+
+<div class="gallery_thumbnail_outer">
+<img class="product_detail_page_flag" src="<?php echo $country_name_image; ?>">
+<?php $_product = $block->getProduct();?>
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <div data-role="loader" class="loading-mask">
+        <div class="loader">
+            <img src="<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>"
+                 alt="<?php /* @escapeNotVerified */ echo __('Loading...') ?>">
+        </div>
+    </div>
+</div>
+</div>
+<div class="item_list item_list_outer">
+<?php 
+
+	if ($_product->getAttributeText('natural') == "Yes"){
+		echo '<div class="active-item"><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/natural-on.png'.'" alt="" /></div><span>Natural</span></div>';  
+	}/*else {
+			echo '<div><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/off.png'.'" alt="" /></div><span>Natural</span></div>'; 
+	}*/
+?>
+<?php 		
+	if ($_product->getAttributeText('sugar_free') == "Yes"){
+		echo '<div class="active-item"><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/sugar-on.png'.'" alt="" /></div><span>Sugar Free</span></div>';  
+	}/* else {
+			echo '<div><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/off.png'.'" alt="" /></div><span>Sugar Free</span></div>'; 
+	}*/
+?>
+<?php 
+	if ($_product->getAttributeText('organic') == "Yes"){
+		echo '<div class="active-item"><div class="item_list_img "><img src="'.$block->getUrl('').'pub/media/kaftorim/organic-on.png'.'" alt="" /></div><span>Organic</span></div>';  
+	}/*else{
+		echo '<div><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/off.png'.'" alt="" /></div><span>Organic</span></div>'; 
+	}*/
+?>
+<?php
+	if ($_product->getAttributeText('gluten_free') == "Yes"){
+		echo '<div class="active-item"><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/gluten-on.png'.'" alt="" /></div><span>Gluten Free</span></div>';  
+	}/*else{
+		echo '<div><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/off.png'.'" alt="" /></div><span>Gluten Free</span></div>'; 
+	}*/
+?> 
+<?php
+	if ($_product->getAttributeText('kosher') == "Yes"){
+		echo '<div class="active-item" ><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/kosher-on.png'.'" alt="" /></div><span>Kosher</span></div>';  
+	}/*else{
+		echo '<div><div class="item_list_img"><img src="'.$block->getUrl('').'pub/media/kaftorim/off.png'.'" alt="" /></div><span>Kosher</span></div>'; 
+	}*/
+?>
+</div>
+
+ <!-- Social Icons -->
+ 
+ <script>(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+           <div class="social-icon-prduct-page">
+               <div style="float:left; width:65px;padding-right:10px;">
+                   <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+                   <g:plusone size="medium"></g:plusone>
+               </div>
+               <div style="float:left; width:55px;padding-right:10px;"> 
+                   <!--<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="<?php //echo $purl.'?fbrefresh=12456'; ?>" layout="button_count" show_faces="false" width="450"></fb:like>-->
+                   <div class="fb-like" data-href="<?php echo $product->getProductUrl();?>" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+               </div>                
+               <div style="float:left; width:65px;padding-right:10px;">
+                   <a href="http://twitter.com/share" class="twitter-share-button" alt="Tweet" data-count="none">Tweet</a>
+                   <script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+               </div>         
+                    
+               <div style="float:left; width:80px;">
+                   <a href="http://pinterest.com/pin/create/button/?url=<?php echo trim($product->getProductUrl()) ?>&media=<?php 
+                   
+                   $store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+echo $imageUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage();
+                   
+                    ?>&description=<?php echo $product->getName(); ?>" class="pin-it-button" count-layout="none">Pin It</a>
+                   <script type="text/javascript" src="https://assets.pinterest.com/js/pinit.js"></script>
+               </div>
+              
+           </div>
+           <!-- Social Icons ends here -->
+<!--Fix for jumping content. Loader must be the same size as gallery.-->
+<script>
+    var config = {
+            "width": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+            "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+                        ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+            "navtype": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/navtype"); ?>",
+            "height": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'height'); ?>
+        },
+        thumbBarHeight = 0,
+        loader = document.querySelectorAll('[data-gallery-role="gallery-placeholder"] [data-role="loader"]')[0];
+
+    if (config.navtype === 'horizontal') {
+        thumbBarHeight = config.thumbheight;
+    }
+
+    loader.style.paddingBottom = ( config.height / config.width * 100) + "%";
+</script>
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?php /* @escapeNotVerified */ echo $block->getMagnifier(); ?>,
+                "data": <?php /* @escapeNotVerified */ echo $block->getGalleryImagesJson(); ?>,
+                "options": {
+                    "nav": "<?php /* @escapeNotVerified */ echo $block->getVar("gallery/nav"); ?>",
+                    <?php if (($block->getVar("gallery/loop"))): ?>
+                        "loop": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/loop"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/keyboard"))): ?>
+                        "keyboard": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/keyboard"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/arrows"))): ?>
+                        "arrows": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/arrows"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/allowfullscreen"))): ?>
+                        "allowfullscreen": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/allowfullscreen"); ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/caption"))): ?>
+                        "showCaption": <?php /* @escapeNotVerified */ echo $block->getVar("gallery/caption"); ?>,
+                    <?php endif; ?>
+                    "width": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'width'); ?>",
+                    "thumbwidth": "<?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'width'); ?>",
+                    <?php if ($block->getImageAttribute('product_page_image_small', 'height') || $block->getImageAttribute('product_page_image_small', 'width')): ?>
+                        "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+                        ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getImageAttribute('product_page_image_medium', 'height') || $block->getImageAttribute('product_page_image_medium', 'width')): ?>
+                        "height": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'height')
+                        ?: $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/transition/duration")): ?>
+                        "transitionduration": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/transition/duration"); ?>,
+                    <?php endif; ?>
+                    "transition": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/transition/effect"); ?>",
+                    <?php if (($block->getVar("gallery/navarrows"))): ?>
+                        "navarrows": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/navarrows"); ?>,
+                    <?php endif; ?>
+                    "navtype": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/navtype"); ?>",
+                    "navdir": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/navdir"); ?>"
+                },
+                "fullscreen": {
+                    "nav": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/nav"); ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/loop")): ?>
+                        "loop": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/loop"); ?>,
+                    <?php endif; ?>
+                    "navdir": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/navdir"); ?>",
+                    <?php if ($block->getVar("gallery/transition/navarrows")): ?>
+                        "navarrows": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/navarrows"); ?>,
+                    <?php endif; ?>
+                    "navtype": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/navtype"); ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/arrows")): ?>
+                        "arrows": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/arrows"); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/caption")): ?>
+                        "showCaption": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/caption"); ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/transition/duration")): ?>
+                        "transitionduration": <?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/transition/duration"); ?>,
+                    <?php endif; ?>
+                    "transition": "<?php /* @escapeNotVerified */  echo $block->getVar("gallery/fullscreen/transition/effect"); ?>"
+                },
+                "breakpoints": <?php /* @escapeNotVerified */ echo $block->getBreakpoints(); ?>
+            }
+        }
+    }
+</script>

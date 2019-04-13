@@ -1,0 +1,39 @@
+<?php
+$categories = $block->getCategoryList();
+$limit = 5;
+$count = 0;
+?>
+
+<div class="mp-sidebar mpcss row">
+	<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mageplaza_blog_sidebar_above_categories_widget')->toHtml();?>
+</div>
+
+<div class="mp-sidebar mpcss">
+	<div class="row">
+		<div class="block-title col-xs-12">
+				<p class="block-mp-sidebar-heading" role="heading" aria-level="2"><?php echo __('Categories') ?></p>
+
+		</div>
+		<div class="col-xs-12">
+			<ul class="menu-categories">
+			<?php if ($categories->getSize()): ?>
+
+
+			<?php foreach ($categories as $category): ?>
+			<?php
+			$count++;
+			if ($count > $limit)
+				break;
+			?>
+					<li class="category-item" ><i class="fa fa-angle-right"></i><a class="list-categories" href="<?php echo $block->getCategoryUrl($category) ?>"><?php echo ucfirst($category->getName()) ?></a></li>
+
+
+			<?php endforeach; ?>
+
+			<?php else: ?>
+				<?php echo __('No Categories') ?>
+			<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+</div>

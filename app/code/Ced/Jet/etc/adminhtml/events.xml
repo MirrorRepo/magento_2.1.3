@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Jet
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */ -->
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="catalog_category_prepare_save"> 
+		<observer name="ced_jet_categories_save" instance="Ced\Jet\Observer\CategorySave"/> 
+	</event>
+	<event name="catalog_controller_category_delete"> 
+		<observer name="ced_jet_categories_delete" instance="Ced\Jet\Observer\CategoryDelete"/> 
+	</event>
+	<event name="catalog_product_save_before">
+        <observer name="ced_jet_save_sku" instance="Ced\Jet\Observer\SaveSku"/>
+    </event>
+    <event name="catalog_product_delete_before">
+        <observer name="ced_jet_product_delete" instance="Ced\Jet\Observer\ProductDeleteBefore"/>
+    </event>
+    <event name="catalog_product_delete_after_done">
+        <observer name="ced_jet_product_delete_after" instance="Ced\Jet\Observer\ProductDeleteAfter"/>
+    </event>
+    <event name="controller_action_catalog_product_save_entity_after">
+        <observer name="ced_jet_shipping_exception" instance="Ced\Jet\Observer\ShippingException"/>
+    </event>
+</config> 

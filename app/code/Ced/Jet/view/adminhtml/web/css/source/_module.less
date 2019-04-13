@@ -1,0 +1,33 @@
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Jet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license     http://cedcommerce.com/license-agreement.txt
+ */
+
+@jet-icons-admin__font-name-path: '@{baseDir}Ced_Jet/fonts/integration-font';
+@jet-icons-admin__font-name : 'CedJet';
+.lib-font-face(
+  @family-name:@jet-icons-admin__font-name,
+  @font-path: @jet-icons-admin__font-name-path,
+  @font-weight: normal,
+  @font-style: normal
+);
+.admin__menu .item-jet.parent.level-0 > a:before {
+  font-family: @jet-icons-admin__font-name;
+  content: "\e900";
+  display: block;
+  font-family: "CedJet";
+  font-size: 4rem;
+  height: 4rem;
+}

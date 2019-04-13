@@ -1,0 +1,188 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Ebay
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+$element = $block->getElement();
+
+?>
+<?php $_htmlId      = 'ebayAttributes' ?>
+<?php $_htmlClass   = 'ebayAttributeClass' ?>
+<?php $_htmlName    = 'ebay_attributes' ?>
+<?php $_readonly    = false ?>
+
+<fieldset class="fieldset" id="attribute-<?php /* @escapeNotVerified */ echo $_htmlId?>-container">
+        <div class="field"  data-attribute-code="<?php /* @escapeNotVerified */ echo $_htmlId?>"
+        >
+            <div class="control">
+                <?php if (!empty($this->getEbayAttributes())) { ?>
+                    <div> Required Attributes! Please map all attributes. </div>
+                <table class="admin__control-table tiers_table" id="tiers_table">
+                    <thead>
+                    <tr>
+                        <th class="col-customer-group"><?php /* @escapeNotVerified */ echo __('Ebay Attribute') ?></th>
+                        <th class="col-qty required"><?php /* @escapeNotVerified */ echo __('Magento Catalog Attribute') ?></th>
+                        <th class="col-delete"><?php /* @escapeNotVerified */ echo __('Action') ?></th>
+                    </tr>
+                    </thead>
+                    <tbody id="<?php /* @escapeNotVerified */ echo $_htmlId ?>_container"></tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="4" class="col-actions-add"><?php echo $block->getChildHtml('add_button') ?></td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <?php } else { ?>
+                    <div> There is no ebay category dependent required attributes </div>
+                <?php } ?>
+
+                <script>
+                    require([
+                        'mage/template',
+                        "prototype",
+                        "mage/adminhtml/form"
+                    ], function (mageTemplate) {
+//<![CDATA[
+                        var ebayAttributeRowTemplate =
+                        <?php if (!empty($this->getEbayAttributes())) { ?>
+                         '<tr>'
+                            + '<td>'
+                            + '<input type="hidden" name="<?php echo $_htmlName ?>[<%- data.index %>][ebay_attribute_type]" id="ebay_attribute_row_<%- data.index %>_ebay_attribute_type"" />'
+                            +'<select onclick="return ebayAttributeControl.setEbayAttributeType(this, <%- data.index %>);" class="<?php echo $_htmlClass ?> custgroup required-entry" name="<?php echo $_htmlName ?>[<%- data.index %>][ebay_attribute_name]" id="ebay_attribute_row_<%- data.index %>_ebay_attribute">'
+                            <?php
+                             foreach ($this->getEbayAttributes() as $code => $attribute) { ?>
+                            +'<option value="<?php echo $code ?>" attribute_type="<?php echo $attribute['ebay_attribute_type'] ?>"><?php echo __($code) ?></option>'
+                            <?php } ?>
+                            + '</select></td>'
+                            + '<td> <select class="<?php echo $_htmlClass ?> required_magento_attr required-entry" name="<?php echo $_htmlName ?>[<%- data.index %>][magento_attribute_code]" id="ebay_attribute_row_<%- data.index %>_magento_attr">'
+                            <?php foreach ($this->getMagentoAttributes() as $_groupId => $_groupName): ?>
+                            + "<option value='<?php echo $_groupId ?>' ><?php echo __($_groupName) ?></option>"
+                            <?php endforeach ?>
+                            + '</select>'
+                            + ' </td>'
+                            + '<td class="col-delete"><input type="hidden" name="<?php /* @escapeNotVerified */ echo $_htmlName ?>[<%- data.index %>][delete]" class="delete" value="" id="ebay_attribute_row_<%- data.index %>_delete" />'
+                            + '<button title="<?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Delete Tier')); ?>" type="button" class="action- scalable delete icon-btn delete-product-option" id="ebay_attribute_row_<%- data.index %>_delete_button" onclick="return ebayAttributeControl.deleteItem(event);">'
+                            + '<span><?php /* @escapeNotVerified */ echo __("Delete") ?></span></button></td>'
+                            + '</tr>';
+                            <?php } ?>
+
+                        var ebayAttributeControl = {
+                            template: mageTemplate(ebayAttributeRowTemplate),
+                            itemsCount: 0,
+                            addItem : function () {
+                                <?php if ($_readonly): ?>
+                                if (arguments.length < 3) {
+                                    return;
+                                }
+                                <?php endif; ?>
+                                var data = {
+                                    ebay_attribute: '',
+                                    magento_attr: '',
+                                    required: '',
+                                    ebay_attribute_type: '',
+                                    index: this.itemsCount++
+                                };
+
+                                if(arguments.length >= 4) {
+                                    data.ebay_attribute = arguments[0];
+                                    data.magento_attr      = arguments[1];
+                                    data.ebay_attribute_type      = arguments[2];
+                                    data.required        = arguments[3];
+                                }
+
+                                Element.insert($('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container'), {
+                                    bottom : this.template({
+                                        data: data
+                                    })
+                                });
+                                
+                                $('ebay_attribute_row_' + data.index + '_ebay_attribute').value = data.ebay_attribute;
+                                $('ebay_attribute_row_' + data.index + '_magento_attr').value    = data.magento_attr;
+                                $('ebay_attribute_row_' + data.index + '_ebay_attribute_type').value    = data.ebay_attribute_type;
+                                
+                                if (data.readOnly == '1') {
+                                    ['website', 'cust_group', 'qty', 'price', 'delete'].each(function(idx){
+                                        $('ebay_attribute_row_'+data.index+'_'+idx).disabled = true;
+                                    });
+                                    $('ebay_attribute_row_'+data.index+'_delete_button').hide();
+                                }
+
+                                <?php if ($_readonly): ?>
+                                $('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').select('input', 'select').each(this.disableElement);
+                                $('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').up('table').select('button').each(this.disableElement);
+                                <?php else: ?>
+                                $('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').select('input', 'select').each(function(el){ Event.observe(el, 'change', el.setHasChanges.bind(el)); });
+                                <?php endif; ?>
+                            },
+                            disableElement: function(el) {
+                                el.disabled = true;
+                                el.addClassName('disabled');
+                            },
+                            deleteItem: function(event) {
+                                var tr = Event.findElement(event, 'tr');
+                                if (tr) {
+                                    Element.select(tr, '.delete').each(function(elem){elem.value='1'});
+                                    Element.select(tr, ['input', 'select']).each(function(elem){elem.hide()});
+                                    Element.hide(tr);
+                                    Element.addClassName(tr, 'no-display template');
+                                }
+                                return false;
+                            },
+                            setEbayAttributeType: function(e, index) {
+                                var attributeType = e.options[e.selectedIndex].getAttribute('attribute_type');
+                                $('ebay_attribute_row_' + index + '_ebay_attribute_type').value    = attributeType;
+                            }
+                        };
+                        <?php if (!empty($this->getEbayAttributeValuesMapping())) { 
+                        foreach ($this->getEbayAttributeValuesMapping() as $_code => $_item):
+                        ?>
+                        ebayAttributeControl.addItem('<?php echo $_code ?>', '<?php echo $_item['magento_attribute_code'] ?>','<?php echo $_item['ebay_attribute_type'] ?>', false);
+                        <?php endforeach; } ?>
+                        <?php if ($_readonly): ?>
+                        $('<?php /* @escapeNotVerified */ echo $_htmlId ?>_container').up('table').select('button')
+                            .each(requiredAttributeControl.disableElement);
+                        <?php endif; ?>
+
+                        window.ebayAttributeControl = ebayAttributeControl;
+
+                    });
+                </script>
+            </div>
+        </div>
+        <?php if (!empty($this->getCategoryFeature())) { ?>
+        <div class="admin__field required _required" data-ui-id="mapping-fieldset-element-select-feature">
+            <label class="label admin__field-label" for="feature" data-ui-id="mapping-fieldset-element-select-feature">
+                <span>Category Feature</span>
+            </label>
+            <div class="admin__field-control control">
+                <select id="feature" name="feature" title="Category Features" class=" required-entry _required select admin__control-select" data-ui-id="mapping-fieldset-element-select-feature">
+                    <option value="">Select Category Feature</option>
+                    <?php 
+                       foreach ($this->getCategoryFeature() as $key =>  $value) {
+
+                                if (!empty($this->getSavedCatFeatures()) && $key == $this->getSavedCatFeatures()) {  ?>
+                                <option value="<?php echo $key ?>" selected ="selected"> <?php echo __($value) ?> 
+                                </option>
+                                <?php  } else { ?>
+                                <option value="<?php echo $key ?>"> <?php echo __($value) ?> 
+                                </option>
+                             <?php } 
+                            }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <?php } ?>
+</fieldset>

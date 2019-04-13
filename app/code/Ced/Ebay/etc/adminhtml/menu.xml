@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Ebay
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Ced_Ebay::Ebay"
+            title="eBay Integration"
+            translate="title"
+            module="Ced_Ebay"
+            sortOrder="14"
+            resource="Ced_Ebay::Ebay"
+         />
+            <add id="Ced_Ebay::configuration"
+                title="eBay Configuration"
+                translate="title"
+                module="Ced_Ebay"
+                sortOrder="1"
+                parent="Ced_Ebay::Ebay"
+                resource="Ced_Ebay::configuration"
+             />
+                <add id="Ced_Ebay::ebay_configuration"
+                    title="eBay Configuration" 
+                    module="Ced_Ebay"
+                    sortOrder="1" 
+                    parent="Ced_Ebay::configuration" 
+                    action="adminhtml/system_config/edit/section/ebay_config"
+                    resource="Ced_Ebay::ebay_configuration"
+                />
+
+            <add id="Ced_Ebay::profile"
+                title="eBay Profile Manager"
+                translate="title"
+                module="Ced_Ebay"
+                sortOrder="2"
+                parent="Ced_Ebay::Ebay"
+                resource="Ced_Ebay::profile"
+            />    
+                <add id="Ced_Ebay::ebay_profile"
+                    title="Profile Manager"
+                    translate="title"
+                    module="Ced_Ebay"
+                    sortOrder="1"
+                    parent="Ced_Ebay::profile"
+                    action="ebay/profile/index"
+                    resource="Ced_Ebay::ebay_profile"
+                />
+
+            <add id="Ced_Ebay::product"
+                title="eBay Product Listing"
+                translate="title"
+                module="Ced_Ebay"
+                sortOrder="3"
+                parent="Ced_Ebay::Ebay"
+                resource="Ced_Ebay::product"
+            />    
+                <add id="Ced_Ebay::ebay_product"
+                    title="Product Listing"
+                    translate="title"
+                    module="Ced_Ebay"
+                    sortOrder="1"
+                    parent="Ced_Ebay::product"
+                    action="ebay/product/index"
+                    resource="Ced_Ebay::product"
+                />  
+
+            <add id="Ced_Ebay::ebay_orders"
+                title="eBay Orders"
+                translate="title"
+                module="Ced_Ebay"
+                sortOrder="4"
+                parent="Ced_Ebay::Ebay"
+                resource="Ced_Ebay::ebay_orders"
+             />
+
+                <add id="Ced_Ebay::ebay_order_listing"
+                    title="eBay Orders Listing"
+                    translate="title"
+                    module="Ced_Ebay"
+                    sortOrder="1"
+                    parent="Ced_Ebay::ebay_orders"
+                    action="ebay/order/index"
+                    resource="Ced_Ebay::ebay_order_listing"
+                 />
+    </menu>
+</config>

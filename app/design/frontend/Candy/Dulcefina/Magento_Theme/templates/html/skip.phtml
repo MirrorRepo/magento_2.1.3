@@ -1,0 +1,222 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+$target = $block->getTarget();
+$label = $block->getLabel();
+?>
+ <div class="color-bar-header">
+
+      <div id="color-bar-button"> <img src="<?php echo $block->getUrl('').'pub/media/css/images/wheel-icon.png';?>" title="View sweets by colors" /> <span>View sweets by colors </span></div>
+    
+          <ul class="swatches" id="color-bar-swatches">
+                <label class="sweets_label"> View sweets by colors</label><li>
+                    
+                 <?php 
+                	
+                 for($i=1; $i<=14; $i++)
+                 {
+                 	$margin = "";
+                 	$baseurl = $this->getBaseUrl();
+                 	$pageurl = "";
+                 	switch($i){
+                 		case 1: $pagename = 'Brown'; $pageurl=$baseurl.'brown';
+                 		break;
+                 		case 2: $pagename = 'White'; $pageurl=$baseurl.'white';
+                 		break;
+                 		case 3: $pagename = 'Yellow'; $pageurl=$baseurl.'yellow';
+                 		break;
+                 		case 4: $pagename = 'Purple';  $pageurl=$baseurl.'purple';
+                 		break;
+                 		case 5: $pagename = 'Green'; $pageurl=$baseurl.'green';
+                 		break;
+                 		case 6: $pagename = 'Orange';  $pageurl=$baseurl.'orange';
+                 		break;
+                 		case 7: $pagename = 'Blue';  $pageurl=$baseurl.'blue';
+                 		break;
+                 		case 8: $pagename = 'Red';  $pageurl=$baseurl.'red';
+                 		break;
+                 		case 9: $pagename = 'Pink';  $pageurl=$baseurl.'pink';
+                 		break;
+                 		case 10: $pagename = 'Black';  $pageurl=$baseurl.'black';
+                 		break;
+                 		case 11: $pagename = 'Silver';  $pageurl=$baseurl.'silver';
+                 		break;
+                 		case 12: $pagename = 'Gold';  $pageurl=$baseurl.'gold';
+                 		break;
+                 		case 13: $pagename = 'Assorted';  $pageurl=$baseurl.'assorted';
+                 		break;
+                 		case 14: $pagename = 'Multi-color';  $pageurl=$baseurl.'multicolor';
+                 		break;
+                 		default : $width='30%';
+                 		break;
+                 	}
+                 	$imgurl = $block->getUrl('').'pub/media/css/color_bar/'.$i.'.png';
+                 	echo "<div id='color_br'>";
+                 	if($i<5){
+                 		if($i==1){echo " <div style='width:100%;'>";}
+                 		if($i==2){echo " <div style=''>"; }
+                 		echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>';
+                 		if($i==3){echo "</div>"; }
+                 		if($i==4){echo "</div>"; }
+                 	}
+                 	if($i>4 && $i<9){
+                 		if($i==5){ echo " <div style='width:100%;'>"; }
+                 		if($i==6){ echo "<div style=''>";}
+                 		echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>';
+                 		if($i==7){ echo "</div>";}
+                 		if($i==8){echo "</div>"; }
+                 	}
+                 	if($i>8 && $i<13){
+                 		if($i==9){ echo " <div style='width:100%;'>"; }
+                 		if($i==10){ echo "<div style=''>";}
+                 		echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>';
+                 		if($i==11){ echo "</div>";}
+                 		if($i==12){echo "</div>"; }
+                 	}
+                 	if($i>12 && $i<=14){
+                 		if($i==13){ echo "<div style=''>";}
+                 		echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>';
+                 		if($i==14){ echo "</div>";}
+                 	}
+                 	echo "</div>";
+                 }
+                 
+                 
+                 /*
+                   for($i=1; $i<=14; $i++)
+                   {                 
+                   $margin = "";
+                   $baseurl = $this->getBaseUrl().'catalogsearch/result/?q=+';
+                   $pageurl = "";
+                   switch($i){
+                   case 1: $pagename = 'Brown'; $pageurl=$baseurl.'brown';
+                   break;
+                   case 2: $pagename = 'White'; $pageurl=$baseurl.'white';
+                   break;
+                   case 3: $pagename = 'Yellow'; $pageurl=$baseurl.'yellow';
+                   break;
+                   case 4: $pagename = 'Purple';  $pageurl=$baseurl.'purple';
+                   break;
+                   case 5: $pagename = 'Green'; $pageurl=$baseurl.'green';
+                   break;
+                   case 6: $pagename = 'Orange';  $pageurl=$baseurl.'orange';
+                   break;
+                   case 7: $pagename = 'Blue';  $pageurl=$baseurl.'blue';
+                   break;
+                   case 8: $pagename = 'Red';  $pageurl=$baseurl.'red';
+                   break;
+                   case 9: $pagename = 'Pink';  $pageurl=$baseurl.'pink';
+                   break;
+                   case 10: $pagename = 'Black';  $pageurl=$baseurl.'black';
+                   break;
+                   case 11: $pagename = 'Silver';  $pageurl=$baseurl.'silver';
+                   break;
+                   case 12: $pagename = 'Gold';  $pageurl=$baseurl.'gold';
+                   break;
+                   case 13: $pagename = 'Assorted';  $pageurl=$baseurl.'assorted';
+                   break;
+                   case 14: $pagename = 'Multi-color';  $pageurl=$baseurl.'multicolor';
+                   break;
+                   default : $width='30%';
+                   break;
+                   }                   
+                   $imgurl = $block->getUrl('').'pub/media/css/color_bar/'.$i.'.png';
+                   echo "<div id='color_br'>";
+                    if($i<5){
+                    if($i==1){echo " <div style='width:100%;'>";}
+                    if($i==2){echo " <div style=''>"; }
+                    echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>';      
+                    if($i==3){echo "</div>"; }
+                    if($i==4){echo "</div>"; }        
+                    }
+                    if($i>4 && $i<9){
+                    if($i==5){ echo " <div style='width:100%;'>"; }
+                    if($i==6){ echo "<div style=''>";}
+                    echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>'; 
+                    if($i==7){ echo "</div>";}
+                    if($i==8){echo "</div>"; }
+                    }
+                    if($i>8 && $i<13){
+                    if($i==9){ echo " <div style='width:100%;'>"; }
+                    if($i==10){ echo "<div style=''>";}
+                    echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>'; 
+                    if($i==11){ echo "</div>";}
+                    if($i==12){echo "</div>"; }
+                    }
+                    if($i>12 && $i<=14){
+                      if($i==13){ echo "<div style=''>";}
+                      echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>'; 
+                      if($i==14){ echo "</div>";}
+                    }
+                    echo "</div>";
+                    } */
+                   ?>
+               </li>
+           </ul>
+        </div>
+
+
+<!-- <a class="action skip <?php /* @escapeNotVerified */ //echo $target?>" href="#<?php /* @escapeNotVerified */ // echo $target?>"><span><?php /* @escapeNotVerified */ //echo $label ?></span></a> -->
+
+<div class="top-menu-cart-outer">
+  <ul>
+    <li>  <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Search::form.mini.phtml")->toHtml(); ?></li>
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$customerSignUpUrl = $storeManager->getStore()->getBaseUrl().'customer/account';
+$customerRegisterUrl = $storeManager->getStore()->getBaseUrl().'customer/account/create';
+$customerMyAccountUrl = $storeManager->getStore()->getBaseUrl().'customer/account/';
+$customerLogoutUrl = $storeManager->getStore()->getBaseUrl().'customer/account/logout';
+
+
+?>
+
+	<?php   
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+		if($customerSession->isLoggedIn()) { ?>
+			<li class="user-dropdown-menu" ><a id="custom-dropdown-menu"> <i class="fa fa-user"></i> <span class="caret"></span></a> 
+		      	<ul class="myaccount-clss">
+                <li class="" ><a href="<?php echo $customerMyAccountUrl; ?>">My account</a> </li>
+		      		 <li class=""> <a href="<?php echo $customerLogoutUrl; ?>">Logout</a>
+		      	</ul>
+		     </li>
+		<?php }else{ ?>	
+			 <li class="top-nav-signup"><a href="<?php echo $customerSignUpUrl; ?>">Sign In</a> </li>
+		<?php } ?>
+     <!-- <li class="top-nav-signup top-nav-register"> <a href="<?php //echo $customerRegisterUrl ?>"> Register </a> </li> -->
+    <li>  <?php echo $this->getLayout()->createBlock('Magento\Checkout\Block\Cart\Sidebar')->setTemplate('Magento_Checkout::cart/minicart.phtml')->toHtml();?></li>
+   
+   </ul>
+ 
+  
+ 
+
+</div>
+
+<script type="text/javascript">
+/*skip template   */
+require([
+ "jquery"
+], function($,click){
+
+$(document).ready(function(){
+    $("#color-bar-button").click(function(){
+        $("#color-bar-swatches").toggleClass("open-color-bar");
+    });
+});
+
+$(document).ready(function(){
+    $("#custom-dropdown-menu").click(function(){
+        $(".user-dropdown-menu").toggleClass("open-dropdown");
+    });
+});
+
+});
+
+</script>

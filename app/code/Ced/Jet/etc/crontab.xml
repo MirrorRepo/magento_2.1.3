@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Jet
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="ced_jet_cron" instance="Ced\Jet\Cron\FetchOrders" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+       <job name="ced_jet_fail_orders" instance="Ced\Jet\Cron\FailedOrders" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="ced_jet_fetch_return" instance="Ced\Jet\Cron\FetchReturns" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="ced_jet_update_return_status" instance="Ced\Jet\Cron\UpdateReturnStatus" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="ced_jet_update_refund_status" instance="Ced\Jet\Cron\UpdateRefundStatus" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <!-- <job name="ced_jet_inventory_sync" instance="Ced\Jet\Cron\InventorySync" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job> -->
+        <job name="ced_jet_auto_sync" instance="Ced\Jet\Cron\AutoSyncWithJet" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+    </group>
+</config>

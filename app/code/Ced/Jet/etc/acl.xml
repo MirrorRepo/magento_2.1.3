@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Jet
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Ced_Jet::Jet" title="Jet" sortOrder="40">
+
+                    <resource id="Ced_Jet::jet_attributes" title="Jet Attribute" sortOrder="10" />
+
+                    <resource id="Ced_Jet::jet_categories" title="Jet Categories" sortOrder="20" />
+
+                    <resource id="Ced_Jet::jet_products" title="Jet Products" sortOrder="30">
+                        <resource id="Ced_Jet::upload_products" title="Upload Products" sortOrder="10" />
+                        <resource id="Ced_Jet::rejected_files" title="Rejected Files" sortOrder="20" />
+                    </resource>
+
+                    <resource id="Ced_Jet::jet_orders" title="Jet Orders" sortOrder="40">
+                        <resource id="Ced_Jet::view_jet_orders" title="View jet orders" sortOrder="10" />
+                        <resource id="Ced_Jet::view_failed_imported_jet_orders_log" title="View Failed Imported Jet Orders Log" sortOrder="20" />
+                    </resource>
+
+                    <resource id="Ced_Jet::jet_configuration" title="Configuration" sortOrder="50" />
+                    
+                    <resource id="Ced_Jet::jet_knowledge_base" title="Jet Knowledge Base" sortOrder="60" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,91 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Jet
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+/** @var $block Ced\Jet\Block\Adminhtml\Product\Edit\Tab\JetAttribute  */
+
+$mAttrId =$this->getRequest()->getParam('attribute_id');
+$JetAttrId = "";
+if ($block->getModel()) {
+   $data = $block->getModel();
+   foreach ($data as $value) {
+       $JetAttrId = $value["jet_attribute_id"];
+       break;
+   }
+}
+?>
+
+<div class="fieldset-wrapper admin__collapsible-block-wrapper opened">
+    <div class="fieldset-wrapper-title">
+        <strong class="admin__collapsible-title" data-toggle="collapse" data-target="#jet-attribute-relation">
+            <span><?php  echo __('Jet Attribute Relation') ?></span>
+        </strong>
+    </div>
+    <div class="fieldset-wrapper-content in collapse" id="jet-attribute-relation">
+        <fieldset class="fieldset">
+            <div class="admin__field field field-attribute_label">
+                <label class="label admin__field-label">
+                    <span>Jet Attribute Id</span>
+                </label>
+                <div class="admin__field-control control">
+                    <input type="text" class="input-text admin__control-text" name="validate" id="attribute_id" value="<?php echo $JetAttrId ?>">
+                </div>
+            </div>
+            <div class="admin__field field field-attribute_label">
+                <label class="label admin__field-label">
+                    <span></span>
+                </label>
+                <div class="admin__field-control control">
+                    <button onclick="validateMapping()" class="action-validate" type="button" id="validate">
+                        <span>Validate</span>
+                    </button>
+                </div>
+            </div>
+            <p>
+                Can't find jet atrribute id ? <a target="_blank" href="<?php echo $this->getUrl('jet/categories/index') ?>">Click here</a> and 'view attribute details' column against each category.
+            </p>
+        </fieldset>
+    </div>
+</div>
+
+<script>
+       function validateMapping(){
+            var validationMessage = $('validation_result');
+            var jetId = $("attribute_id").value;
+            var mAttrId = "<?php echo $mAttrId ?>";
+            params = { jet_id: jetId,
+                mAttrId: mAttrId
+            };
+            new Ajax.Request('<?php echo $block->getAjaxUrl() ?>', {
+                parameters: params,
+                onSuccess: function(response) {                    
+                    try {
+                        if (response.responseText.isJSON()) {
+                            var result = response.responseText.evalJSON();                            
+                            if (result.message) {
+                                if($('map-message')){
+                                    $('map-message').remove();
+                                }
+                                $('attribute_id').insert({ 'after' : result.message });
+                            }
+                        }
+                    } catch(e) {
+                        console.log('some error appeared');
+                    }
+                }                
+            });
+        }
+</script>

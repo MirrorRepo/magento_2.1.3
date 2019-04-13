@@ -1,0 +1,54 @@
+<?php
+for($i=1; $i<=8; $i++)
+{
+$pagename = "";
+$margin = "";
+switch($i){
+           case 1: $width='45%'; $height='400px'; $margin='margin: 0 4px 0 0;'; $pagename = 'Holiday';
+               break;
+           case 2: $width='40%'; $height='99%'; $margin='margin:0;'; $pagename = 'Special Events';
+               break;
+           case 3: $width='56%'; $height='99%'; $margin='margin:0 0 0 4px;'; $pagename = 'Special Interest';
+               break;
+           case 4: $width='52%'; $height='200px'; $margin='margin:0;'; $pagename = 'Sales';
+               break;
+           case 5: $width='32%'; $height='550px'; $pagename = 'Under $25';
+               break;
+           case 6: $width='100%'; $height='49%'; $margin='margin:0 0 4px;'; $pagename = 'For My Family';
+               break;
+           case 7: $width='100%'; $height='50%'; $margin='margin:0;'; $pagename = 'For My Work';
+               break;
+           case 8: $width='40%'; $height='550px'; $pagename = 'All Gifts';
+               break;
+          default : $width='30%';
+               break;
+}
+    $imgurl = $this->getSkinUrl().'images/spl_images/'.$i.'.jpg';
+    if($i<5){
+        if($i==1){echo " <div style='width:100%;float:left;'>";}
+        if($i==2){echo " <div style=' float: left; height: 195px; margin: 0 0 4px; width: 53%;'>"; }
+        echo '<div class="home-images" style="width:'.$width.'; height:'.$height.'; '.$margin.';"><a class="homeimg-link" href="" title=""><img style="width:100%; height:100%;" src="'.$imgurl.'" alt="" /></a>
+           <div class="home-imgtitle"><span>'.$pagename.'</span><span class="home-arwimg"></span></div> </div>';      
+        if($i==3){echo "</div>"; }
+        if($i==4){echo "</div>"; }
+        
+    }
+    
+    
+    if($i>4 && $i<9){
+        if($i==5){ echo " <div style='width:100%;float:left;margin-top:4px'>"; }
+        if($i==6){ echo "<div style='float: left; height: 550px; margin: 2px; width: 25%;'>";}
+        echo '<div class="home-images" style="border:0; width:'.$width.'; height:'.$height.'; '.$margin.';"><a class="homeimg-link" href="" title=""><img style="width:100%; height:100%;" src="'.$imgurl.'" alt="" /></a>
+          <div class="home-imgtitle"><span>'.$pagename.'</span><span class="home-arwimg"></span></div></div>'; 
+        if($i==7){ echo "</div>";}
+        if($i==8){echo "</div>"; }
+    }
+    
+    
+       // echo '<div class="home-images" style="width:'.$width.'; height:'.$height.'"><a class="homeimg-link" href="" title=""><img style="width:100%; height:100%;" src="'.$imgurl.'" alt="" /></a>
+         // </div>';      
+          //if($i == 4)break;
+          
+} 
+
+?>

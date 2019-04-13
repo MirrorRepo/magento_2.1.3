@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+ <!-- 
+ /**
+  * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement(EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Ebay
+  * @author      CedCommerce Core Team <connect@cedcommerce.com>
+  * @copyright   Copyright CEDCOMMERCE(http://cedcommerce.com/)
+  * @license     http://cedcommerce.com/license-agreement.txt
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+    <system>
+        <tab id="cedcommerce" translate="label" sortOrder="1">
+            <label>Cedcommerce</label>
+        </tab>
+
+<!-- section start for eBay Configuration Tab in Cedcommerce section -->
+        <section id="ebay_config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label> ebay Configuration</label>
+            <tab>cedcommerce</tab>
+            <resource>Ced_Ebay::system_config</resource>
+            <group id="ebay_setting" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+              <label>eBay Merchant/Developer Settings</label>
+                <field id="environment" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Select Environment</label>
+                    <source_model>Ced\Ebay\Model\Config\Environment</source_model>
+                    <tooltip>Used for API URLs</tooltip>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="location" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Select Store Location</label>
+                    <source_model>Ced\Ebay\Model\Config\Location</source_model>
+                    <tooltip>Location/Site ID used for API call</tooltip>
+                    <validate>required-entry</validate>
+                </field>
+                <!-- <field id="fetch_details" translate="button_label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Fetch Categories</button_label>
+                    <frontend_model>Ced\Ebay\Block\Adminhtml\Config\Details</frontend_model>
+                    <comment>Fetch Categories based on store location</comment>
+                </field>  -->
+                <field id="token" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay Access Token</label>
+                </field>
+                <field id="expiration_time" translate="label" type="label" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay Token Expiration Time</label>
+                </field>
+                <field id="created_time" translate="label" type="label" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay Token Created Time</label>
+                </field>
+                <field id="session_id" translate="label" type="label" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay Token Session ID</label>
+                </field>
+                <field id="fetch_token" translate="button_label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Fetch Token</button_label>
+                    <frontend_model>Ced\Ebay\Block\Adminhtml\Config\Token</frontend_model>
+                </field>
+                <!-- <field id="fetch_payment_methods" translate="button_label" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Fetch Payment Methods</button_label>
+                    <frontend_model>Ced\Ebay\Block\Adminhtml\Config\PayMethod</frontend_model>
+                </field> -->
+                <field id="storeid" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Select Store</label>
+                    <source_model>Magento\Config\Model\Config\Source\Store</source_model>
+                </field>
+                <field id="fetch_other_details" translate="button_label" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Fetch Other Details</button_label>
+                    <frontend_model>Ced\Ebay\Block\Adminhtml\Config\OtherDetails</frontend_model>
+                </field>
+                <!-- <field id="app_id" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay App ID (Client ID)</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="cert_id" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay Cert ID (Client Secret)</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="dev_id" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay Dev ID</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="ru_name" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>eBay Redirect URL name</label>
+                    <validate>required-entry</validate>
+                </field> -->
+            </group>
+            <group id="payment_detail" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Payment Details</label>
+                <comment>Please select payment methods for eBay products</comment>
+                <field id="payment_methods" translate="label" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Payment Methods</label>
+                    <source_model>Ced\Ebay\Model\Config\PaymentMethods</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="paypal_email" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>PayPal Email Address</label>
+                    <validate>validate-email</validate>
+                    <depends>
+                        <field id="payment_methods">PayPal</field>
+                    </depends> 
+                </field>
+            </group>
+            <group id="shipping_details" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Shipping Details</label>
+                <comment>Please fill shipping details for eBay products</comment>
+                <field id="service_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Service Type</label>
+                    <source_model>Ced\Ebay\Model\Config\ServiceType</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="shipping_service" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Shipping Service</label>
+                    <source_model>Ced\Ebay\Model\Config\ShippingService</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="shipping_cost" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Shipping Cost</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+                <field id="ship_add_cost" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Shipping Additional Cost</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+                <field id="postal_code" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Postal Code</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+            </group>
+            <group id="return_policy" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Return Policy</label>
+                <comment>Please fill return policy for eBay products</comment>
+                <field id="refund_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Refund Type</label>
+                    <source_model>Ced\Ebay\Model\Config\RefundType</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="return_days" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Return With-In Days</label>
+                    <source_model>Ced\Ebay\Model\Config\ReturnWithIn</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="return_accepted" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Return Accepted</label>
+                    <source_model>Ced\Ebay\Model\Config\ReturnAccepted</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="return_description" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Return Description</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="ship_cost_paidby" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Shipping Cost Paid By</label>
+                    <source_model>Ced\Ebay\Model\Config\ShipCostPaidBy</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="restocking_fee_value" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Re-Stocking Fee Value</label>
+                    <source_model>Ced\Ebay\Model\Config\Restocking</source_model>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+            <group id="product_sync" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Edit Settings</label>
+                <field id="auto_syn" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Auto Sync</label>
+                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     <comment>Auto Update product information on eBay While Product Edit</comment>
+                </field>
+                <field id="price_sync" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Price Sync</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     <comment>Sync price with eBay</comment>
+                </field>
+                <field id="inventory_sync" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Inventory Sync</label>
+                   <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     <comment>Sync inventory on eBay</comment>
+                </field>
+                <field id="image_sync" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Image Sync</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     <comment>Sync images on eBay</comment>
+                </field>
+                <field id="all_detail_sync" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>All Details Sync</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     <comment>Sync all details of product</comment>
+                </field>
+                <field id="archive_child_product" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Archive Child Product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     <comment>Choose whether child product need to be archieved on eBay once it's parent config product is disabled or deleted</comment>
+                </field>
+            </group>
+            <group id="product_upload" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>eBay Product Upload Setting</label>
+                <field id="chunk_size" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Product Chunk Size</label>
+                    <validate>validate-number</validate>
+                    <comment><![CDATA[Enter the size of a chunk]]></comment>
+                </field>
+            </group>
+            <group id="ebay_order" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>eBay Order Setting</label>
+                <field id="order_notify_email" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Order Notification Email</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+        <!-- section end for eBay Cofiguration Tab in Cedcommerce Tab -->
+
+        <!-- section start for Shipping Methods Tab in Sales Tab -->
+        <section id="carriers" >
+            <group id="shipbyebay" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>eBay Payment Method(Default)</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+            </group>
+        </section>
+        <!-- section end for Shipping Methods Tab in Sales Tab -->
+
+        <!-- section start for Payment Methods Tab in Sales Tab -->
+         <section id="payment">
+            <group id="paybyebay" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Jet.com</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>New order status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+            </group>
+        </section>
+        <!-- section end for Payment Methods Tab in Sales Tab -->
+    </system>
+</config>

@@ -1,0 +1,46 @@
+<div class="row country-outer">
+<?php 
+	$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
+	
+	foreach($categoryHelper->getStoreCategories() as $category):
+		$category_url = $categoryHelper->getCategoryUrl($category);
+		$category_name = $category->getName();
+		
+		if($category->getId() == 8){ 
+			
+			$subcategories = $category->getChildrenCategories();
+				if (count($subcategories) > 0){			
+					foreach($subcategories as $subcategory){
+						$subcategory_id = $subcategory->getId();						
+						$object_manager = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);						
+						$subcategory_image = "";
+						if($object_manager->getImageUrl()){   
+							$subcategory_image = $object_manager->getImageUrl();	 
+						}else{
+							$subcategory_image  = $block->getUrl('').'pub/media/images/dulcefina/cat_placeholder.jpg';
+						}		
+						$page_title = $subcategory->getMetaTitle();				
+													
+						$subcategory_url = $subcategory->getUrl();
+						$subcategory_name = $subcategory->getName(); 	
+						if($subcategory->getIsActive()){  ?>						
+							<div class="col-sm-4 col-xs-6 country_box">
+								<div class="country-inner-box">
+								 	<div class="country_icon_left">
+								 		<a href="<?php echo $subcategory_url; ?>"><img src="<?php echo $subcategory_image; ?>"></a>
+								 	</div>
+								 	<div class="country_text_right">
+								 		<h3><a href="<?php echo $subcategory_url; ?>"><?php echo $subcategory_name; ?></a></h3>
+								 	</div>
+							 	</div>	
+							</div>								
+						<?php 
+						}
+									
+					}
+				}
+	}
+?>
+<?php endforeach; ?>
+</div>

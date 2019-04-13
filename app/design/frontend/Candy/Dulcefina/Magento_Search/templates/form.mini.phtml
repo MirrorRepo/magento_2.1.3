@@ -1,0 +1,90 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper('Magento\Search\Helper\Data');
+?>
+
+<div class="search-link desktop-search-btn-outer">
+
+<div class="home-search-wrapper">
+   <!--  <div class="search-close-trigger"><i class="fa fa-close"></i></div> -->
+    <div style = "display:none" class="block block-title"><strong><?php /* @escapeNotVerified */ echo __('Search'); ?></strong></div>
+  
+        <form class="form minisearch" id="search_mini_form" action="<?php /* @escapeNotVerified */ echo $helper->getResultUrl() ?>" method="get">
+            <div class="field search">
+                
+               <!--  <label class="label" for="search" data-role="minisearch-label">
+                   <span><?php /* @escapeNotVerified */ //echo __('Search'); ?></span>
+               </label> -->
+                
+                <div class="control">
+                     
+                           
+                              <input id="search"
+                           data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form",
+                                "url":"<?php /* @escapeNotVerified */ echo $block->getUrl('search/ajax/suggest', ['_secure' => $block->getRequest()->isSecure()]); ?>",
+                                "destinationSelector":"#search_autocomplete"}
+                           }'
+                           type="text"
+                           name="<?php /* @escapeNotVerified */ echo $helper->getQueryParamName() ?>"
+                           value="<?php /* @escapeNotVerified */ echo $helper->getEscapedQueryText() ?>"
+                           placeholder="<?php /* @escapeNotVerified */ echo __('Search'); ?>"
+                           class="input-text"
+                           maxlength="<?php /* @escapeNotVerified */ echo $helper->getMaxQueryLength();?>"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           autocomplete="off"/>
+                            <button type="submit"
+                        title="<?php echo $block->escapeHtml(__('Search')) ?>"
+                        class="action search">
+                        <i class="fa fa-search" aria-hidden="true"></i> 
+                  <img src="<?php echo $block->getUrl(''); ?>pub/media/css/images/search-icon.png" alt="" class="search_icon_img"><?php /* @escapeNotVerified */ //echo __('Search'); ?>
+                </button>
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <?php echo $block->getChildHtml() ?>
+
+                    
+                </div>
+            </div>
+           
+        </form>
+</div>
+
+  <a href="javascript:void(0)" class="level-top ui-corner-all search-icon desktop-search-btn" id="ui-id-22" tabindex="-1" role="menuitem" title="Search">
+    <span class="search-btn"></span>
+  </a>
+</div>
+
+<script type="text/javascript">
+
+/* search template*/
+
+require([
+  "jquery"
+], function($,click){
+  //$('.home-search-wrapper').css('display','none');
+  $(".desktop-search-btn").click(function() {
+      $(this).toggleClass("change-icon");
+      $('.home-search-wrapper').toggleClass("top-search-show");
+     // $('body').addClass("hide-scroll");
+      //$('.home-search-wrapper').css('display','block');
+    });
+
+/*  $(".search-close-trigger").click(function() {
+      $('.home-search-wrapper').removeClass("top-search-show");
+      $('body').removeClass("hide-scroll");
+      //$('.home-search-wrapper').css('display','block');
+    });*/
+
+  });
+</script>

@@ -1,0 +1,77 @@
+ <div class="color-bar-header">
+          <ul class="swatches">
+                <label class="sweets_label">View sweets by colors:</label><li>
+                    
+                 <?php 
+                   for($i=1; $i<=14; $i++)
+                   {                 
+                   $margin = "";
+                   $baseurl = $this->getBaseUrl();
+                   $pageurl = "";
+                   switch($i){
+                   case 1: $pagename = 'Brown'; $pageurl=$baseurl.'brown.html';
+                   break;
+                   case 2: $pagename = 'White'; $pageurl=$baseurl.'white.html';
+                   break;
+                   case 3: $pagename = 'Yellow'; $pageurl=$baseurl.'yellow.html';
+                   break;
+                   case 4: $pagename = 'Purple';  $pageurl=$baseurl.'purple.html';
+                   break;
+                   case 5: $pagename = 'Green'; $pageurl=$baseurl.'green.html';
+                   break;
+                   case 6: $pagename = 'Orange';  $pageurl=$baseurl.'orange.html';
+                   break;
+                   case 7: $pagename = 'Blue';  $pageurl=$baseurl.'blue.html';
+                   break;
+                   case 8: $pagename = 'Red';  $pageurl=$baseurl.'red.html';
+                   break;
+                   case 9: $pagename = 'Pink';  $pageurl=$baseurl.'pink.html';
+                   break;
+                   case 10: $pagename = 'Black';  $pageurl=$baseurl.'black.html';
+                   break;
+                   case 11: $pagename = 'Silver';  $pageurl=$baseurl.'silver.html';
+                   break;
+                   case 12: $pagename = 'Gold';  $pageurl=$baseurl.'gold.html';
+                   break;
+                   case 13: $pagename = 'Assorted';  $pageurl=$baseurl.'assorted.html';
+                   break;
+                   case 14: $pagename = 'Multi-color';  $pageurl=$baseurl.'multicolor.html';
+                   break;
+                   default : $width='30%';
+                   break;
+                   }                   
+                   $imgurl = $block->getUrl('').'pub/media/css/color_bar/'.$i.'.png';
+                   echo "<div id='color_br'>";
+                    if($i<5){
+                    if($i==1){echo " <div style='width:100%;'>";}
+                    if($i==2){echo " <div style=''>"; }
+                    echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>';      
+                    if($i==3){echo "</div>"; }
+                    if($i==4){echo "</div>"; }        
+                    }
+                    if($i>4 && $i<9){
+                    if($i==5){ echo " <div style='width:100%;'>"; }
+                    if($i==6){ echo "<div style=''>";}
+                    echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>'; 
+                    if($i==7){ echo "</div>";}
+                    if($i==8){echo "</div>"; }
+                    }
+                    if($i>8 && $i<13){
+                    if($i==9){ echo " <div style='width:100%;'>"; }
+                    if($i==10){ echo "<div style=''>";}
+                    echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>'; 
+                    if($i==11){ echo "</div>";}
+                    if($i==12){echo "</div>"; }
+                    }
+                    if($i>12 && $i<=14){
+                      if($i==13){ echo "<div style=''>";}
+                      echo '<a class="homeimg-link" href="'.$pageurl.'" title="'.$pagename.'"><span class="'.strtolower($pagename).'"></span></a>'; 
+                      if($i==14){ echo "</div>";}
+                    }
+                    echo "</div>";
+                    }
+                   ?>
+               </li>
+           </ul>
+        </div>
+    </div>

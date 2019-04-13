@@ -1,0 +1,14 @@
+[03-Aug-2017 13:40:14 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1044] Access denied for user 'dulcefin_db-user'@'localhost' to database 'dulcefin_dulcefina1' in /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php:128
+Stack trace:
+#0 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php(128): PDO->__construct('mysql:host=loca...', 'dulcefin_db-use...', 'Uu&$Rp-GkBs(', Array)
+#1 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home/dulcefin/public_html/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php(353): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Abstract.php(460): Magento\Framework\DB\Adapter\Pdo\Mysql->_connect()
+#4 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT `main_ta... in /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php on line 144
+[03-Aug-2017 13:40:32 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1044] Access denied for user 'dulcefin_db-user'@'localhost' to database 'dulcefin_dulcefina1' in /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php:128
+Stack trace:
+#0 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php(128): PDO->__construct('mysql:host=loca...', 'dulcefin_db-use...', 'Uu&$Rp-GkBs(', Array)
+#1 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home/dulcefin/public_html/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php(353): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Abstract.php(460): Magento\Framework\DB\Adapter\Pdo\Mysql->_connect()
+#4 /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT `main_ta... in /home/dulcefin/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php on line 144

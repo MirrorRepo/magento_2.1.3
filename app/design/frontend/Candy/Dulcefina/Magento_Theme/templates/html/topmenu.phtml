@@ -1,0 +1,176 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<?php
+	$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$categoryHelper = $this->helper('Magento\Catalog\Helper\Category');	
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory'); 
+?>
+<nav class="navigation desktop-view" data-action="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <?php /* @escapeNotVerified */ //echo $_menu; ?>
+        <?php /* @escapeNotVerified */ //echo $block->getChildHtml(); ?>
+        
+		<li class="level0 level-top parent menu-categories">
+			<a href="javascript:void(0)" class="level-top"><span>Categories</span></a>
+			<ul class="level0 submenu sub-menu-categories-outer">
+			<?php
+				foreach($categoryHelper->getStoreCategories() as $category){
+					$category_name = $category->getName();
+					$category_url = $categoryHelper->getCategoryUrl($category);
+					//$category_product_count = $category->getProductCount();
+					
+					$loadCategoryById = $_objectManager->create('Magento\Catalog\Model\Category')->load($category->getId());
+					$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+					$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+					$productCollection->addAttributeToSelect('*');
+					$productCollection->addCategoryFilter($loadCategoryById);
+					
+					$productCollection->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+					$productCollection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+					
+					$stockHelper = $objectManager->create('Magento\CatalogInventory\Helper\Stock');	
+					$stockHelper->addInStockFilterToCollection($productCollection);
+					
+					$category_product_count = count($productCollection);					
+					
+					if($category->getId() != 8 && $category->getId() != 110){ 
+			?>
+					<li class="level1 sub-menu-categories"><a href="<?php echo $category_url ; ?>"><span><?php echo $category_name; ?></span></a><span class="product_total_count">(<?php echo $category_product_count; ?>)</span></li>
+			<?php } } ?>
+			</ul>
+		</li>
+		
+		
+	<?php
+		foreach($categoryHelper->getStoreCategories() as $category): 
+			$category_name = $category->getName();
+			$category_url = $categoryHelper->getCategoryUrl($category);
+
+		// Category ID 8 Countries List Menu	
+
+		if($category->getId() == 8){ 
+			$category_name = $category->getName();
+			$category_url = $categoryHelper->getCategoryUrl($category);
+			$category_name_lower = strtolower($category_name);	?>	
+				<li class="level0 level-top parent menu-<?php echo $category_name_lower; ?>">
+				<a href="javascript:void(0)<?php //echo $category_url; ?>" class="level-top"><span><?php echo $category_name; ?></span></a>
+				<?php
+				$subcategories = $category->getChildrenCategories();
+				if (count($subcategories) > 0){ ?>
+					<ul class="level0 submenu sub-menu-<?php echo $category_name_lower; ?>-outer">
+						<?php			
+							foreach($subcategories as $subcategory){
+								$subcategory_id = $subcategory->getId();
+								
+								$loadCategoryById = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);
+								$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+								$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+								$productCollection->addAttributeToSelect('*');
+								$productCollection->addCategoryFilter($loadCategoryById);
+								$productCollection->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+								$productCollection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+								$stockHelper = $objectManager->create('Magento\CatalogInventory\Helper\Stock');	
+					$stockHelper->addInStockFilterToCollection($productCollection);
+								$category_product_count = count($productCollection);
+								
+								
+								
+								$object_manager = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);
+								$page_title = $subcategory->getMetaTitle();
+								$subcategory_url = $subcategory->getUrl();
+								$subcategory_name = $subcategory->getName(); 
+								$category_name_lower = strtolower($category_name);
+								$subcategory_name_lower = strtolower($subcategory_name);
+								$subcategory_image = "";
+								if($object_manager->getImageUrl()){
+									//$subcategory_image = $object_manager->getImageUrl();
+									$subcategory_image =  $block->getUrl('').'pub/media/css/category-flag/'.$subcategory_name_lower.'.png';
+								}else{
+									$subcategory_image  = $block->getUrl('').'pub/media/images/dulcefina/cat_placeholder_flag.png';
+								}
+						?>
+						<li class="level1 sub-menu-<?php echo $category_name_lower; ?>"><a href="<?php echo $subcategory_url; ?>"><img src="<?php echo $subcategory_image; ?>" alt="<?php echo $subcategory_name; ?>" width="50px" class="menu_flg" height="50px"><span><?php echo $subcategory_name; ?></span></a><span class="product_total_count">(<?php echo $category_product_count; ?>)</span></li>
+						<?php } ?>
+					</ul>
+				<?php } ?>
+				</li>
+		<?php }	?>
+		<?php endforeach; ?>
+		<li class="level0 level-top ui-menu-item" role="presentation">
+			<a href="<?php echo $block->getUrl(''); ?>blog/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem">
+				<span>Blog</span>
+			</a>
+		</li>
+
+	</ul>
+</nav>
+
+<a class="logo" href="<?php echo $block->getUrl(''); ?>" title="" style="display: block">
+    <img src="<?php echo $block->getUrl(''); ?>pub/media/images/dulcefina/logo.png" />      
+</a>
+
+<nav class="navigation" data-action="navigation">
+	 <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>    
+		   
+		 <li class="level0 level-top ui-menu-item" role="presentation">
+			<a href="<?php echo $block->getUrl(''); ?>Sarasota/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem" title="Sarasota">
+				<span>Sarasota</span>
+			</a>
+		</li>
+		
+		 <li class="level0 level-top ui-menu-item" role="presentation">
+			<a href="<?php echo $block->getUrl(''); ?>candy-buffet/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem" title="Buffet">
+				<span>Buffet</span>
+			</a>
+		</li>
+		
+		 <li class="level0 level-top ui-menu-item" role="presentation">
+			<a href="<?php echo $block->getUrl(''); ?>about-us/" class="level-top ui-corner-all" id="ui-id-22" tabindex="-1" role="menuitem" title="About">
+				<span>About</span>
+			</a>
+		</li>
+		
+		<li class="level0 level-top ui-menu-item search-link" role="presentation" style="display: none">
+			<a href="javascript:void(0)" class="level-top ui-corner-all search-icon desktop-search-btn" id="ui-id-22" tabindex="-1" role="menuitem" title="Search">
+				<span><img src="<?php echo $block->getUrl(''); ?>pub/media/css/images/search-icon.png"></span>
+			</a>
+		</li>
+	   
+	</ul>
+</nav>
+<!-- <script type="text/javascript">
+require([
+  "jquery"
+], function($,click){
+	//$('.home-search-wrapper').css('display','none');
+	$(".search-icon").click(function() {
+			$('.home-search-wrapper').toggle();
+			//$('.home-search-wrapper').css('display','block');
+		});
+	});
+</script>
+ -->
+<!-- Display for mobile Menus -->
+<div class="mobile-view">
+
+	  
+</div>
+
+

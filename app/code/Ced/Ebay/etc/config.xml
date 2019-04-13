@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Ebay
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Store/etc/config.xsd">
+	<default>
+		<ebay_config>
+			<product_upload>
+				<chunk_size>5</chunk_size>
+			</product_upload>
+		</ebay_config>
+		<shipping_details>
+			<service_type>Flat</service_type>
+		</shipping_details>
+		<carriers>
+			<shipbyebay>
+				<active>1</active>
+				<sallowspecific>0</sallowspecific>
+				<name>eBay Shipping Method(Default)</name>
+				<title>eBay Shipping Method</title>
+				<model>Ced\Ebay\Model\Carrier\Shipbyebay</model>
+			</shipbyebay>
+		</carriers> 
+		<payment>
+			<paybyebay>
+				<active>1</active>
+				<model>Ced\Ebay\Model\Payment\Paybyebay</model>
+				<order_status>Processing</order_status>
+				<title>eBay Payment Method(Default)</title>
+				<payment_action>sale</payment_action>
+				<allowspecific>0</allowspecific>
+			</paybyebay>
+    </payment>
+  </default> 
+</config>

@@ -1,0 +1,93 @@
+<?php
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$subcategory_id = 110;
+$category = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);
+$response = array();
+$posts = array();
+$k=0;
+$heightarray = array("308", "277", "308", "308", "268", "308", "308", "310", "260", "248", "148", "148", "148", "148", "276", "276",
+    "307", "308", "212", "308");
+
+
+$subcategories = $category->getChildrenCategories();
+if (count($subcategories) > 0){	
+	foreach($subcategories as $subcategory){
+		    $subcategory_id = $subcategory->getId();
+			$subcategory = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);
+			$catimg  = $subcategory->getImageUrl();
+			$catname = $subcategory->getName();
+			$caturls = $subcategory->getUrl();
+			$page_title = $subcategory->getMetaTitle();
+			$height = $heightarray[array_rand($heightarray)];
+			if($subcategory->getImageUrl()){
+				$posts[] = array('image'=> ''.$catimg.'', 'url'=> $caturls, 'width'=> 300, 'height'=> $height, 'price'=> $page_title, "name"=> $catname);
+				$k++;
+            }
+			
+		}	
+	
+}
+
+$response['result'] = $posts;
+$count = count($posts);
+$response['total']= $count;
+$fp = fopen('waterfall/data/home/homespecials.json', 'w');
+fwrite($fp, json_encode($response));
+fclose($fp);
+?>
+
+<div id="container2" style="width: auto; margin: 0 auto;"></div>
+<script type="text/x-handlebars-template" id="waterfall-tpl2">
+{{#result}}
+    <div class="item">
+        <div class="price">
+            <span class="price">{{price}}</span>
+        </div>
+        <a href="{{url}}" style="background-image:url('{{image}}');height='{{height}}';">
+            <img src="" style="visibility:hidden; width:{{width}};  height:{{height}}px "/>
+        </a>
+        <a class="home-imgtitle" href="{{url}}">
+            <span>{{name}}</span><span class="home-arwimg"></span>
+        </a>
+    </div>
+{{/result}}
+</script>
+
+<script type="text/javascript">
+$wf = jQuery.noConflict();
+$wf('#container2').waterfall({
+itemCls: 'item',
+colWidth: 300,  
+gutterWidth: 15,
+gutterHeight: 15,
+checkImagesLoaded: false,
+callbacks: {
+    renderData: function (data2, dataType) {
+        var tpl,
+            template,
+            resultNum2 = data2.total;               
+            if (resultNum2 === <?php echo $count;?>) {
+                $wf('#container2').waterfall('pause', function() {
+                    //$waterfall('#waterfall-message').html('<div id="header" style="text-align:center;"><h1>no more data</h1></div>');
+                    //alert('no more data');
+                   });
+            }    
+            if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
+                tpl = $wf('#waterfall-tpl2').html();
+                template = Handlebars.compile(tpl);
+                    return template(data2);
+            } else { // html format
+                return data2;
+            }
+        }
+    },
+path: function(page) {
+    return '<?php echo  $block->getUrl('');  ?>waterfall/data/home/homespecials.json?page='+page;
+}
+});
+</script>
+<style>
+    #waterfall-loading {
+        display: none;
+    }
+</style>

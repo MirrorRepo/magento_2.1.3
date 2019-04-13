@@ -1,0 +1,188 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Jet
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+$level_0 = $block->getLevel(0); // parent
+$level_1 = $block->getLevel(1);
+$level_2 = $block->getLevel(2);
+
+$root_cat_id = $block->getRootCategory();
+$savecat_id_level0 = $block->getSavedCategoryData(0);
+$savecat_id_level1 = $block->getSavedCategoryData(1);
+$savecat_id_level2 = $block->getSavedCategoryData(2);
+//Test purpose
+$saved_parentcat_id_level1 = $block->getParentCategoryData(2);
+if (!$saved_parentcat_id_level1) {
+    $saved_parentcat_id_level1 = isset($savecat_id_level1) ? $savecat_id_level1 : false;
+}
+if ($saved_parentcat_id_level1) {
+    $saved_root_cat_id = $block->getRootCategoryData($saved_parentcat_id_level1);
+} else {
+    $saved_root_cat_id = false;
+}
+$errorIds = $block->getsavedMagentoIds();
+?>
+
+<script>
+    require([
+        "jquery",
+
+    ], function ($) {
+        setTimeout(function () {
+            $('[name="current_cat_id"]').remove();
+            $('[data-index="current_cat_id"]').find('div').first().remove();
+            $('[data-index="current_cat_id"]').append('<div class="admin__field-control"><input type=\"text\" class=\"admin__control-text\" value=\"<?php  echo $block->getCurrentCategory(); ?>\"/ readonly="true"></div>');
+        }, 1000);
+        var level_0 =<?php  echo json_encode($level_0);?>;
+        var level_1 =<?php  echo json_encode($level_1);?>;
+        var level_2 =<?php  echo json_encode($level_2);?>;
+        var saved_data_level0 = "<?php  echo $savecat_id_level0; ?>";
+        var saved_data_level1 = "<?php  echo $savecat_id_level1; ?>";
+        var saved_data_level2 = "<?php  echo $savecat_id_level2;?>";
+        var defaultcat = "<?php  echo $block->getCurrentCategory(); ?>";
+        var savedparent_id_level1 = "<?php  echo $saved_parentcat_id_level1; ?>";
+        var saved_root_cat_id = "<?php  echo $saved_root_cat_id; ?>";
+        var savedMagentoIds =<?php  echo json_encode($errorIds);?>;
+
+        setTimeout(function () {
+            if (defaultcat == '2') {
+                $('[data-index="jet_cat_level_0"]').hide();
+                $('[data-index="jet_cat_level_1"]').hide();
+                $('[data-index="jet_cat_level_2"]').hide();
+                $('[data-index="jet_category_mapping"]').children().append('<div id="error">jet doesn\'t entertain uploading product on root category . Plz choose desired child category</div></div>')
+            } else {
+                $('[data-index="jet_category_mapping"]').addClass(' _show');
+                $('[data-index="jet_category_mapping"]').children().addClass(' _show');
+            
+                if (saved_data_level0 == "" && saved_data_level1 == "" && saved_data_level2 == "") {
+                    $('[name="jet_cat_level_1"]').prepend('<option value="">Please select child-category</option>');
+                    $('[name="jet_cat_level_1"]').attr('disabled', 'disabled');
+                    $('[name="jet_cat_level_2"]').prepend('<option value="">Please select sub-child-category</option>');
+                    $('[name="jet_cat_level_2"]').attr('disabled', 'disabled');
+                }
+
+                $('[name="jet_cat_level_0"]').change(function () {  //LEVEL 1
+                    $('[name="jet_cat_level_1"]').empty();
+                    $('[name="jet_cat_level_2"]').empty();
+                    $('[name="jet_cat_level_1"]').removeAttr('disabled');
+                     $('[name="jet_cat_level_1"]').append('<option value="">Please select child-category</option>');
+                    $('[name="jet_cat_level_2"]').append('<option value="">Please select sub-child-category</option>');
+                    var cat_id = $('[name="jet_cat_level_0"]').val();
+                    for (var key in level_1) {
+                        for (var subkey in level_1[key]) {
+                            if ((subkey == 'parent_cat_id') && (level_1[key][subkey] == cat_id)) {
+                                if (saved_data_level1 == level_1[key]['cat_id']) {
+                                    $('[name="jet_cat_level_1"]').append('<option value=' + level_1[key]['cat_id'] + 'selected="selected' + '>' + level_1[key]['name'] + '</option>');
+                                } else {
+                                    $('[name="jet_cat_level_1"]').append('<option value=' + level_1[key]['cat_id'] + '>' + level_1[key]['name'] + '</option>');
+                                }
+                            }
+                        }
+                    }
+                });
+
+                $('[name="jet_cat_level_1"]').change(function () {  //LEVEL 2
+                    $('[name="jet_cat_level_2"]').empty();
+                    $('[name="jet_cat_level_2"]').append('<option value="">Please select sub-child-category</option>');
+                    $('[name="jet_cat_level_2"]').removeAttr('disabled');
+                    var cat_id = $('[name="jet_cat_level_1"]').val();
+                    for (var key in level_2) {
+                        for (var subkey in level_2[key]) {
+                            if (subkey == 'parent_cat_id') {
+                                if (level_2[key][subkey] == cat_id)  //LEVEL 1
+                                {
+                                    if (saved_data_level1 == level_2[key]['cat_id']) {
+                                        $('[name="jet_cat_level_2"]').append('<option value=' + level_2[key]['cat_id'] + 'selected="selected' + '>' + level_2[key]['name'] + '</option>');
+                                    } else {
+                                        $('[name="jet_cat_level_2"]').append('<option value=' + level_2[key]['cat_id'] + '>' + level_2[key]['name'] + '</option>');
+                                    }
+
+
+                                }
+
+                            }
+                        }
+
+                    }
+
+
+                });
+// FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 0
+
+                if (saved_root_cat_id) {
+                    $('[name="jet_cat_level_0"]').empty();
+                    $('[name="jet_cat_level_0"]').append('<option value="">Please select root-category</option>');
+
+                    for (var key in level_0) {
+                        for (var subkey in level_0[key]) {
+                            if (subkey == 'parent_cat_id') {
+                                if (saved_root_cat_id == level_0[key]['cat_id']) {
+                                    $('[name="jet_cat_level_0"]').append('<option  selected="selected" value=' + level_0[key]['cat_id'] + '>' + level_0[key]['name'] + '</option>');
+                                } else {
+                                    $('[name="jet_cat_level_0"]').append('<option value=' + level_0[key]['cat_id'] + '>' + level_0[key]['name'] + '</option>');
+                                }
+
+
+                            }
+                        }
+                    }
+
+                }
+// FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 1
+
+
+                if(savedparent_id_level1){
+                    $('[name="jet_cat_level_1"]').empty();
+                    var cat_id = savedparent_id_level1;
+                    for (var key in level_1) {
+                        for (var subkey in level_1[key]) {//LEVEL 1 value selection
+                            if ((subkey == 'parent_cat_id') && (level_1[key]['parent_cat_id'] == saved_root_cat_id)) {
+                                if (savedparent_id_level1 == level_1[key]['cat_id']) {
+                                    $('[name="jet_cat_level_1"]').append('<option  selected="selected" value='+level_1[key]['cat_id']+'>'+level_1[key]['name']+'</option>'); 
+                                } else {
+                                    $('[name="jet_cat_level_1"]').append('<option value='+level_1[key]['cat_id']+'>'+level_1[key]['name']+'</option>');
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+// FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 2
+
+                if (saved_data_level2) {
+                    $('[name="jet_cat_level_2"]').empty();
+                    var cat_id = savedparent_id_level1;
+                    for (var key in level_2) {
+                        for (var subkey in level_2[key]) {
+                            if (subkey == 'parent_cat_id') {
+                                if (level_2[key][subkey] == cat_id) {
+                                    if (saved_data_level2 == level_2[key]['cat_id'])//LEVEL 2 value selection
+                                    {
+                                        $('[name="jet_cat_level_2"]').append('<option  selected="selected" value=' + level_2[key]['cat_id'] + '>' + level_2[key]['name'] + '</option>');
+                                    } else {
+                                        $('[name="jet_cat_level_2"]').append('<option value=' + level_2[key]['cat_id'] + '>' + level_2[key]['name'] + '</option>');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }, 2000);
+
+    });
+</script>

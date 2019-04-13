@@ -1,0 +1,122 @@
+<?php
+$cat = Mage::getModel('catalog/category')->load(8);
+$subcats = $cat->getChildren();
+$i=1;
+foreach (explode(',', $subcats) as $subcategory) {
+      $categoriesdev = Mage::getModel('catalog/category')->load($subcategory);
+      $cats[$categoriesdev->getName()]=$subcategory;
+}
+ksort($cats);
+foreach($cats as $subCatid)
+{   
+    
+      $_category = Mage::getModel('catalog/category')->load($subCatid);      
+      $caturl     = $_category->getURL();
+      $catname     = $_category->getName();
+      $imageurl  = $_category->getImageUrl();      
+      $margin = "";
+      if($_category->getImageUrl())
+        {
+?>
+
+<?php
+     switch ($i){           
+        case 1: $width='240px;';  $height='240px;'; break;
+        case 2: $width='480px;';  $height='240px;'; break;
+        case 3: $width='240px;';  $height='240px;'; break;
+        case 4: $width='480px;';  $height='480px;'; break;
+        case 5: $width='240px;';  $height='235px;'; break;
+        case 6: $width='240px;';  $height='235px;'; break;
+        case 7: $width='240px;';  $height='480px;'; break;                 
+        default : $width='200px;'; $height='245px;'; break;
+     }
+?>
+<?php $imageurl  = $_category->getImageUrl(); ?>
+<?php list($width1, $height1) = getimagesize($imageurl); 
+          if($width>200&&$width<260){
+            $width_new = ($width1-$width)/3+30;
+        }
+          if($width>260&&$width<300){
+            $width_new = ($width1-$width)/3+100;
+        }
+          if($width>300&&$width<350){
+            $width_new = ($width1-$width)/3+70;
+        }
+        if($width>350 && $width<400){
+            $width_new = ($width1-$width)/3+50;
+        }
+            if($width>400 && $width<500){
+                $width_new = ($width1-$width)/3+50;
+            }
+            if($width>=500 && $width<600){
+                $width_new = ($width1-$width)/3+50;
+            }
+      $height_new = ($height1-$height)/2;
+       $left = '-'.$width_new.'px';
+       $top  = '-'.$height_new.'px';
+?>
+<?php if($i>0 && $i<4){ ?>
+<?php if($i==1){ ?>
+<div style="float:left; width:100%;">
+<?php } ?>
+
+<div style="float:left;padding:5px;width:<?php echo $width ?>;height:<?php echo $height ?>">   
+    <div class='home-images' style=' height: 240px; width: 100%;'><a class='homeimg-link' style="float:left;" href="<?php echo $caturl ?>" title="<?php echo  $catname ?>">
+        <img style='width:auto; height:auto; position:relative; top:<?php echo $top ?>; left:<?php echo $left ?>;' src="<?php echo $imageurl ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo $catname; ?>" />
+    </a></div>
+    <a class="home-imgtitle" href="<?php echo $caturl ?>"><span><?php echo  $catname ?></span><span class="home-arwimg"></span></a>
+</div>
+
+<?php if($i==3) { ?>
+ </div>
+<?php  } 
+        }
+?> 
+
+<?php if($i>3 && $i<8){ ?>
+
+    <?php if($i==4){?>
+    <div style="float:left; width:100%;padding: 5px 0;">
+    <div style="padding:0 5px;float:left; height:<?php echo $height?> width:<?php echo $width?>">    
+    <?php } ?>
+    <?php if($i==5 || $i==7){?>
+        <div style="padding:0 5px;float:left; height:<?php echo $height?> width:<?php echo $width?>">        
+    <?php } ?>    
+
+    <div style="<?php if($i==5) echo 'padding-bottom:10px;'; ?> float:left;width:<?php echo $width ?>;height:<?php echo $height ?>">   
+        <div class='home-images' style='float: left; height: 100%; margin-top: 2px; width: 100%;'><a  style="float:left;" href="<?php echo $caturl ?>" title="<?php echo  $catname ?>" class="product-image">
+            <img style='width:auto; height:auto; position:relative; top:<?php echo $top ?>; left:<?php echo $left ?>;' src="<?php echo $imageurl ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" alt="<?php echo  $catname ?>" />
+        </a>  </div>
+         <a class="home-imgtitle" href="<?php echo $caturl ?>"><span><?php echo  $catname ?></span><span class="home-arwimg"></span></a>
+    </div>
+    <?php if($i==4){ ?></div><?php } ?>
+    <?php if($i==6){ ?></div><?php } ?>
+    <?php if($i==7){ ?></div></div><?php } ?>
+
+<?php } ?>
+    
+<?php if( $i%8 == 0 ){ 
+        $i = 1;    
+      }
+      else{
+          $i++;
+      }
+?>
+
+<?php          
+      }
+}
+?>
+</div>
+<style>
+    .home-images{
+        overflow: hidden;
+        margin: 0px !important;
+    }
+    .homeimg-link {
+        text-align: center;
+    }
+       .home-imgtitle {
+        position: relative;
+    }
+</style>

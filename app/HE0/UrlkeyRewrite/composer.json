@@ -1,0 +1,21 @@
+{
+    "name": "he/module-urlkeyrewrite",
+    "description": "",
+    "license": "General Public License",
+    "authors": [
+        {
+            "email": "pbriscoe@human-element.com",
+            "name": "Paul Briscoe"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "HE\\UrlkeyRewrite\\": ""
+        }
+    }
+}

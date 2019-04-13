@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @escapeNotVerified */ //echo $block->getMiscellaneousHtml(); ?>
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_links')->toHtml();?>
+
+<script type="text/javascript">
+/* absoulte footer */
+require([
+ "jquery"
+], function($,click){
+
+jQuery(window).scroll(function() {    
+    var scroll = jQuery(window).scrollTop();
+if($(window).width() >= 767) {
+    if(scroll >= 100) {
+        jQuery("body").addClass("fixedheader");
+    } else {
+        jQuery("body").removeClass("fixedheader");
+    }
+}
+});
+});
+
+</script>

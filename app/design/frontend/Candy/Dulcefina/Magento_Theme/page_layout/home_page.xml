@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <!-- <update handle="empty"/>
+    <referenceContainer name="page.wrapper">
+        <container name="header.container" as="header_container" label="Page Header Container"  htmlTag="header" htmlClass="page-header" before="main.content"/>
+        <container name="page.top" as="page_top" label="After Page Header" after="header.container" />
+        <container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer" />
+    </referenceContainer> -->
+	
+	
+	<container name="root">
+        <container name="after.body.start" as="after.body.start" before="-" label="Page Top"/>
+        <container name="page.wrapper" as="page_wrapper" htmlTag="div" htmlClass="page-wrapper">
+       		<container name="header.container.wrapper" as="header_container_wrapper" label="Page Header Container Wrapper"  htmlTag="div" htmlClass="header-wrapper" before="main.content">
+				<container name="header.container" as="header_container" label="Page Header Container"  htmlTag="header" htmlClass="page-header top_header_outer" before="-"/>
+			</container>
+		 	<container name="page.top" as="page_top" label="After Page Header" after="header.container.wrapper" />
+            <block class="Magento\Theme\Block\Html\Header" name="header_banner" template="html/header_banner.phtml" before="main.content"/>
+           <container name="global.notices" as="global_notices" before="-"/>
+            <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="content-wrapper">
+            	<container name="columns" htmlTag="div" htmlClass="container12">
+					<container name="columns.inner" htmlTag="div" htmlClass="row main-container row-margin-remove">
+						<container name="main" label="Main Content Container" htmlTag="div" htmlClass="content-inner col-sm-12">
+							<container name="columns.top" label="Before Main Columns"/>
+							<container name="global.notices" as="global_notices" before="-"/>
+							<container name="columns.top" label="Before Main Columns"/>
+						</container>
+					</container>
+                </container>
+            </container>
+            <!-- <block class="Magento\Theme\Block\Html\Header" name="home_page_google_map" template="html/home_page_google_map.phtml" before="page.bottom.container"/> -->
+            <container name="page.bottom.container" as="page_bottom_container" label="Before Page Footer Container" after="main.content" htmlTag="div" htmlClass="page-bottom"/>
+			<container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer page-footer-search-term" />
+            <container name="before.body.end" as="before_body_end" after="-" label="Page Bottom"/>
+        </container>
+    </container>
+</layout>

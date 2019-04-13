@@ -1,0 +1,54 @@
+<?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+    if($category){ ?>
+		<div class="banner_outer_main category_outer_main" style="background: url(<?php echo $category->getImageUrl(); ?>) no-repeat;">
+			<div class="banner-inner-content category-inner-content">
+				<div class="container">
+
+					<?php 
+					    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+					    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+					    $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+					    if($category && !$product){
+						   	//echo $category->getId();
+						   	$country_name = $category->getName();
+						    //echo $category->getParentId();
+						    if($category->getParentId() == 8){
+						    	$country_name_lower = strtolower($country_name);
+						    	
+						    	
+						    	if($category->getImageUrl()){
+						    		$country_name_image =  $block->getUrl('').'pub/media/css/category-flag/'.$country_name_lower.'.png';
+								}else{
+								$country_name_image  = $block->getUrl('').'pub/media/images/dulcefina/cat_placeholder_flag.png';
+								}
+						    	
+						    	
+						    	echo "<div class='product_list_page_flag_outer text-center'><img class='product_list_page_flag' src='$country_name_image'></div>";
+						    }
+					    }
+					?>
+					<div class="category-banner-text"><?php echo $country_name = $category->getName(); ?></div>
+				</div>
+			</div>
+		</div>
+
+
+<?php 
+	//echo $category->getId();
+	    //echo $category->getParentId();
+	}else { ?>	
+	<div class="banner_outer_main category_outer_main page_outer_main">
+		<div class="banner-inner-content category-inner-content">
+			<div class="container">
+				<div class="category-banner-text"></div>
+			</div>
+		</div>
+	</div>
+		
+		
+<?php 
+	}
+?>
+<?php //echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('category-page-banner')->toHtml();?>

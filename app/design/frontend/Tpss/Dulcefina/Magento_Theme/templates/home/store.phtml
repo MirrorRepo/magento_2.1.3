@@ -1,0 +1,265 @@
+<!-- categories  starts here -->
+<?php
+$categories = Mage::getModel('catalog/category')
+    ->getCollection()
+    ->addAttributeToSelect('*')
+    ->addAttributeToFilter('is_active', 1)
+    ->addAttributeToSort('name','ASC');
+//foreach($categories as $t){
+//    echo $t->getName()."+".$t->getId()." % ";
+//}
+    $root_category = Mage::getModel('catalog/category')->load(2);
+    $subcategories = $root_category->getChildren();
+    $i = 1;
+    foreach(explode(',',$subcategories) as $subcategory) {  
+        $categoryasdf = Mage::getModel('catalog/category')->load($subcategory);
+        $cats[$categoryasdf->getName()]=$subcategory;
+    }
+    ksort($cats);
+//    foreach($cats as $c){
+//        $ff = Mage::getModel('catalog/category')->load($c);
+//        echo $ff->getName()." + ";
+//    }
+    foreach($categories as $subcategory) {  
+    $catid = $subcategory->getId();
+    $parentId=Mage::getModel('catalog/category')->load($catid)->getParentId();
+    if($catid != 8 && $parentId != 1 && $parentId != 8 && $parentId != 110){
+                $category = Mage::getModel('catalog/category')->load($catid);
+
+                $pid = array();    
+                foreach ($category->getProductCollection() as $product) {
+                   $pid[] = $product->getId();
+                }    
+                $randomid = $pid[array_rand($pid)];    
+                $product= Mage::getModel('catalog/product')->load($randomid);
+
+                $caturl = $category->getUrl();
+                $catname = $category->getName(); 
+                //ksort($catname, SORT_STRING);
+                
+
+            ?>
+
+            <?php
+                 switch ($i){           
+                    case 1: $width='240px;';  $height='240px;'; break;
+                    case 2: $width='480px;';  $height='240px;'; break;
+                    case 3: $width='240px;';  $height='240px;'; break;
+                    case 4: $width='480px;';  $height='480px;'; break;
+                    case 5: $width='240px;';  $height='235px;'; break;
+                    case 6: $width='240px;';  $height='235px;'; break;
+                    case 7: $width='240px;';  $height='480px;'; break;                 
+                    default : $width='200px;'; $height='245px;'; break;
+                 }
+            ?>
+			<?php 
+			
+			$imageurl = Mage::helper('catalog/image')->init($product, 'image')->keepFrame(false)->resize(); ?>
+        <?php list($width1, $height1) = getimagesize($imageurl); 
+                if($width>200&&$width<260){
+            $width_new = ($width1-$width)/3+0;
+        }
+          if($width>260&&$width<300){
+            $width_new = ($width1-$width)/3+40;
+        }
+          if($width>300&&$width<350){
+            $width_new = ($width1-$width)/3+70;
+        }
+        if($width>350 && $width<400){
+            $width_new = ($width1-$width)/3+50;
+        }
+            if($width>400 && $width<500){
+                $width_new = ($width1-$width)/3+50;
+            }
+            if($width>=500 && $width<600){
+                $width_new = ($width1-$width)/3+50;
+            }
+            
+            $height_new = ($height1-$height)/2;
+            $left = '-'.$width_new.'px';
+            $top  = '-'.$height_new.'px';
+             $page_title = $category->getMetaTitle();
+         ?>
+            <?php if($i>0 && $i<4){ ?>
+            <?php if($i==1){ ?>
+            <div style="float:left; width:100%;">
+            <?php } ?>
+
+            <div style="float:left;padding:5px;width:<?php echo $width ?>;height:<?php echo $height ?>">  <div class="page-title1"><?php echo $page_title ?></div>
+                <div class='home-images' style=' height: 240px; width: 100%;'><a style='float:left; background-size: cover !important; background: url(<?php echo $imageurl ?>)  no-repeat scroll 50% 50% transparent; width:<?php echo $width ?>;height:<?php echo $height ?>; ' href="<?php echo $caturl ?>" title="<?php echo  $catname ?>">
+                   
+                </a>
+                <a class="home-imgtitle" href="<?php echo $caturl ?>"><span><?php echo  $catname ?></span><span class="home-arwimg"></span></a></div>
+            </div>
+
+            <?php if($i==3) { ?>
+             </div>
+            <?php  } 
+                    }
+            ?> 
+
+            <?php if($i>3 && $i<8){ ?>
+
+                <?php if($i==4){?>
+                <div style="float:left; width:100%;padding: 5px 0;">
+                <div style="padding:0 5px;float:left; height:<?php echo $height?> width:<?php echo $width?>">    
+                <?php } ?>
+                <?php if($i==5 || $i==7){?>
+                    <div style="padding:0 5px;float:left; height:<?php echo $height?> width:<?php echo $width?>">        
+                <?php } ?>    
+
+                <div style="<?php if($i==5) echo 'padding-bottom:10px;'; ?> float:left;width:<?php echo $width ?>;height:<?php echo $height ?>"><div class="page-title1"><?php echo $page_title ?></div>   
+                    <div class='home-images' style='float: left; height: 100%; margin-top: 0px; width: 100%;'><a  style='float:left; background-size: cover !important; background: url(<?php echo $imageurl ?>)  no-repeat scroll 50% 50% transparent; width:<?php echo $width ?>;height:<?php echo $height ?>; ' href="<?php echo $caturl ?>" title="<?php echo  $catname ?>" class="product-image">
+                        
+                    </a>  
+                     <a class="home-imgtitle" href="<?php echo $caturl ?>"><span><?php echo  $catname ?></span><span class="home-arwimg"></span></a></div>
+                </div>
+                <?php if($i==4){ ?></div><?php } ?>
+                <?php if($i==6){ ?></div><?php } ?>
+                <?php if($i==7){ ?></div></div><?php } ?>
+
+            <?php } ?>
+
+        <?php if( $i%8 == 0 ){ 
+                $i = 1;    
+              }
+              else{
+                  $i++;
+              }
+        ?>
+
+    <?php
+            }
+}
+?>
+
+<!-- categories ends here -->
+
+
+
+<div style="float:left; width:100%;padding: 40px 0;"><hr></div>
+
+
+
+<!-- special pages starts here -->
+
+<?php
+$cat = Mage::getModel('catalog/category')->load(110);
+$subcats = $cat->getChildren();
+$k=0;
+foreach(explode(',', $subcats) as $subcategory){
+    $categorycountry = Mage::getModel('catalog/category')->load($subcategory);
+    $cats[$categorycountry->getName()]=$subcategory;
+}
+//ksort($cats);
+foreach($cats as $subCatid)
+{
+     $_category = Mage::getModel('catalog/category')->load($subCatid);      
+      $caturl     = "";       
+	  $baseurl = $this->getBaseUrl();   
+      $margin = "";
+	  $catimg  = $_category->getImageUrl();
+	   $catname = $_category->getName();
+           $caturls = $_category->getUrl();
+   if($_category->getImageUrl()){
+     switch ($k){           
+           case 0: $width='480px'; $height='480px'; $caturl=$baseurl.'holiday'; break; 
+           case 1: $width='240px'; $height='240px'; $caturl=$baseurl.'special-events'; break;
+           case 2: $width='240px'; $height='240px'; $caturl=$baseurl.'special-interest'; break; 
+           case 3: $width='490px'; $height='230px'; $caturl=$baseurl.'sales'; break; 
+           case 4: $width='330px'; $height='500px'; $caturl=$baseurl.'under-25'; break;           
+           case 5: $width='300px'; $height='245px'; $caturl=$baseurl.'for-my-family'; break;
+           case 6: $width='300px'; $height='245px'; $caturl=$baseurl.'for-my-work'; break; 
+           case 7: $width='330px'; $height='500px'; $caturl=$baseurl.'all-gifts'; break; 
+           case 8: $width='480px'; $height='480px'; $caturl=$baseurl.'holiday'; break; 
+           case 9: $width='240px'; $height='240px'; $caturl=$baseurl.'special-events'; break;
+           case 10: $width='240px'; $height='240px'; $caturl=$baseurl.'special-interest'; break; 
+           case 11: $width='490px'; $height='230px'; $caturl=$baseurl.'sales'; break; 
+           case 12: $width='330px'; $height='500px'; $caturl=$baseurl.'under-25'; break;           
+           case 13: $width='300px'; $height='245px'; $caturl=$baseurl.'for-my-family'; break;
+           case 14: $width='300px'; $height='245px'; $caturl=$baseurl.'for-my-work'; break; 
+           case 15: $width='330px'; $height='500px'; $caturl=$baseurl.'all-gifts'; break; 
+           case 16: $width='480px'; $height='480px'; $caturl=$baseurl.'holiday'; break; 
+           case 17: $width='240px'; $height='240px'; $caturl=$baseurl.'special-events'; break;
+           case 18: $width='240px'; $height='240px'; $caturl=$baseurl.'special-interest'; break; 
+           case 19: $width='490px'; $height='230px'; $caturl=$baseurl.'sales'; break; 
+        default : $width='320px';
+     }
+	 
+	   /* first block */
+          if($k < 4){
+            if($k == 0){ echo "<div style='float:left; width:100%;'>"; }  
+            echo '<div class="home-images" style="width:'.$width.'; height:'.$height.'; margin: 5px !important;   border:none;"><a class="homeimg-link" href="'.$caturls.'"  style="float:left; background-size: cover !important; background: url('.$catimg.')  no-repeat scroll 50% 50%  transparent; width:'.$width.'; height:'.$height.'; "></a>
+             <a href="'.$caturls.'" class="home-imgtitle"><span>'.$catname.'</span><span class="home-arwimg"></span></a></div>';      
+            if($k==3){ echo "</div>"; }
+          }
+          /* first ends */
+          
+          /* second block */
+          if($k > 3 && $k < 8){
+            if($k == 4){ echo "<div style='float:left; width:100%;'>"; }
+            if($k == 5){ echo "<div style=' float:left; height: 500px; width: 31%;'>"; }
+                echo '<div class="home-images" style="width:'.$width.'; height:'.$height.'; border:none; margin: 5px !important;"><a class="homeimg-link" href="'.$caturls.'" style="float:left; background-size: cover !important; background: url('.$catimg.')  no-repeat scroll 50% 50% transparent; width:'.$width.'; height:'.$height.'; "></a>
+                <a href="'.$caturls.'" class="home-imgtitle"><span>'.$catname.'</span><span class="home-arwimg"></span></a></div>';      
+            if($k == 6){ echo "</div>"; }
+            if($k==7){ echo "</div>"; }
+          }
+          /* second ends */
+         /* Third block */
+          if($k > 7 && $k < 12){
+            if($k == 8){ echo "<div style='float:left; width:100%;'>"; }  
+            echo '<div class="home-images" style="width:'.$width.'; height:'.$height.'; margin: 5px !important;   border:none;"><a class="homeimg-link" href="'.$caturls.'"  style="float:left; background-size: cover !important; background: url('.$catimg.')  no-repeat scroll 50% 50%  transparent; width:'.$width.'; height:'.$height.'; "></a>
+             <a href="'.$caturls.'" class="home-imgtitle"><span>'.$catname.'</span><span class="home-arwimg"></span></a></div>';      
+            if($k==11){ echo "</div>"; }
+          }
+          /* Third ends */          
+          /* Fourth block */
+          if($k > 11 && $k < 16){
+            if($k == 12){ echo "<div style='float:left; width:100%;'>"; }
+            if($k == 13){ echo "<div style=' float:left; height: 500px; width: 31%;'>"; }
+                echo '<div class="home-images" style="width:'.$width.'; height:'.$height.'; border:none; margin: 5px !important;"><a class="homeimg-link" href="'.$caturls.'" style="float:left; background-size: cover !important; background: url('.$catimg.')  no-repeat scroll 50% 50% transparent; width:'.$width.'; height:'.$height.'; "></a>
+                <a href="'.$caturls.'" class="home-imgtitle"><span>'.$catname.'</span><span class="home-arwimg"></span></a></div>';      
+            if($k == 14){ echo "</div>"; }
+            if($k==15){ echo "</div>"; }
+          }
+          /* Fourth ends */
+           /* Third block */
+          if($k > 15 && $k < 20){
+            if($k == 16){ echo "<div style='float:left; width:100%;'>"; }  
+            echo '<div class="home-images" style="width:'.$width.'; height:'.$height.'; margin: 5px !important;   border:none;"><a class="homeimg-link" href="'.$caturls.'"  style="float:left; background-size: cover !important; background: url('.$catimg.')  no-repeat scroll 50% 50%  transparent; width:'.$width.'; height:'.$height.'; "></a>
+             <a href="'.$caturls.'" class="home-imgtitle"><span>'.$catname.'</span><span class="home-arwimg"></span></a></div>';      
+            if($k==19){ echo "</div>"; }
+          }
+          /* Third ends */
+		  $k++;
+		  }
+}		  
+?>
+
+
+<!-- special pages ends here -->
+
+<style>
+    .home-images{
+        overflow: hidden;
+        margin: 0px !important;
+    }
+    .home-images:hover .home-imgtitle {
+	background: none repeat scroll 0 0 #E1931E !important;
+     }    
+    .homeimg-link {
+        text-align: center;
+    }
+       .home-imgtitle {
+        position: relative;
+    }
+     .page-title1 {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-top: 3px;
+    position: absolute;
+    font-size: 15px;
+    color: #197909;
+    font-family: helvetica; 
+    }
+</style>

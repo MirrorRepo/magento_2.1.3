@@ -1,0 +1,164 @@
+<?php 
+        $cat_id = 3; // set current category id
+        $category = Mage::getModel('catalog/category')->load($cat_id);
+        $products = $category->getProductCollection()->addCategoryFilter($category)->addAttributeToSelect('*');
+
+        $response = array();
+        $posts = array();
+        $count = count($products);
+        $response['total']= $count;
+        $heightarray = array("308", "277", "308", "308", "268", "308", "308", "310", "260", "248", "148", "148", "148", "148", "276", "276",
+            "307", "308", "212", "308");
+        $i=0;
+        foreach($products as $p){ 
+            $visibility = $p->getVisibility();        
+            if($visibility != '1'){
+                $height = $heightarray[array_rand($heightarray)];
+                $image123 = "".Mage::helper('catalog/image')->init($p, 'small_image')->resize(300,$height)."";
+                $purl = Mage::getUrl($p->getUrlPath());
+                $width = '300';
+                //$height = '288';
+                $price = Mage::helper('core')->currency($p->getFinalPrice(),true,false);
+                $name = $p->getName();
+//                $price = $p->getShortDescription();
+//                if($price == "null"){
+//                    $price="";
+//                }                
+                $posts[] = array('image'=> $image123, 'url'=> $purl, 'width'=> $width, 'height'=> $height, 'price'=> $price, "name"=> $name);
+                $i++;                
+            }
+        }
+        $response['result'] = $posts;
+        $fp = fopen('results'.$cat_id.'.json', 'w');
+        fwrite($fp, json_encode($response));
+        fclose($fp);
+    ?>    
+
+    <link rel="stylesheet" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>/waterfall/css/reset.css">
+    <link rel="stylesheet" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>/waterfall/css/waterfall.css">
+<!--    <div id="header">
+        <h1>no more data</h1>
+    </div>-->
+    <div id="container" style="width: auto; margin: 0 auto;"></div>
+    <script type="text/x-handlebars-template" id="waterfall-tpl">
+    {{#result}}
+        <div class="item">
+            <div class="price">
+                <span class="price">{{price}}</span>
+            </div>
+            <a href="{{url}}" style="background-image:url('{{image}}');height='{{height}}';">
+                <img src="" width="{{width}}" height="{{height}}" style="visibility:hidden;"/>
+            </a>
+            <a class="home-imgtitle" href="{{url}}">
+                <span>{{name}}</span><span class="home-arwimg"></span>
+            </a>
+        </div>
+    {{/result}}
+    </script>
+    <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>/waterfall/js/libs/jquery/jquery.js"></script>
+    <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>/waterfall/js/libs/handlebars/handlebars.js"></script>
+    <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>/waterfall/js/waterfall.min.js"></script>
+    <script>
+    $waterfall = jQuery.noConflict();
+    $waterfall('#container').waterfall({
+    itemCls: 'item',
+    colWidth: 300,  
+    gutterWidth: 15,
+    gutterHeight: 15,
+    checkImagesLoaded: false,
+    callbacks: {
+        renderData: function (data, dataType) {
+            var tpl,
+                template,
+                resultNum = data.total;                
+            if (resultNum === <?php echo $count;?>) {
+                $waterfall('#container').waterfall('pause', function() {
+                    //$waterfall('#waterfall-message').html('<div id="header" style="text-align:center;"><h1>no more data</h1></div>');
+                    //alert('no more data');
+                });
+            }    
+            if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
+                tpl = $waterfall('#waterfall-tpl').html();
+                template = Handlebars.compile(tpl);
+                    return template(data);
+            } else { // html format
+                return data;
+            }
+        }
+    },
+    path: function(page) {
+        return '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>results'+<?php echo $cat_id;?>+'.json?page='+page;
+    }
+});
+   
+//    $waterfall('#container').waterfall({
+//        itemCls: 'item',
+//        colWidth: 250,  
+//        gutterWidth: 15,
+//        gutterHeight: 15,
+//        fitWidth: true,
+//        checkImagesLoaded: false,
+//        callbacks: {
+//            renderData: function (data, dataType) {
+//                var tpl,
+//                    template,
+//                    resultNum = data.total;
+//                if ( resultNum < <?php echo $count; ?>) {
+//                    $waterfall('#container').waterfall('pause', function() {
+//                        $waterfall('#waterfall-message').html('<p style="color:#666;">no more data...</p>')
+//                        //alert('no more data');
+//                    });
+//                }    
+//                if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
+//                    tpl = $waterfall('#waterfall-tpl').html();
+//                    template = Handlebars.compile(tpl);
+//                        return template(data);
+//                } else { // html format
+//                    return data;
+//                }
+//            }
+//        },
+//        path: function(page) {
+//            return '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>results'+<?php echo $cat_id;?>+'.json?page='+page;
+//        }
+//    });
+    </script>
+    <style>
+        .item {
+            padding: 0px;
+            width: 300px;
+        }
+        .item a {
+            float:left;
+            background-position: 50% 50%;
+            background-clip: border-box;
+            background-color: rgba(0, 0, 0, 0);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            background-clip: border-box;
+            background-origin: padding-box;
+            width: 300px !important;
+        }        
+        .price {
+            color: #A8A8A8;
+            font-family: helvetica;
+            font-size: 15px;
+            font-weight: normal;
+            margin-left: 5px;
+            margin-top: 3px;
+            position: absolute;
+        }
+        .home-imgtitle {
+            opacity: 0.6;
+        }
+        .home-imgtitle span {
+            opacity: 1;
+            color: #FFFFFF !important;       
+            font-size: 18px !important;
+        }
+        .item:hover a.home-imgtitle{
+            background: none repeat scroll 0 0 #E1931E;
+        }
+        
+    </style>

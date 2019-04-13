@@ -1,0 +1,217 @@
+id,description,display_name,scope,status,precedence,free_text,display,facet_filter,variant,range,parent_id,variant_pair,merchant_defined,retired
+3,old_Baby Kid Clothing Size,Size,1,1,0,0,0,1,1,0,0,0,1,0
+4,Material Type,Material,1,1,2,0,1,0,1,0,0,0,1,0
+8,Product Form,Form,1,1,100,0,1,0,1,0,0,0,1,0
+9,ESRB Ratings,ESRB Ratings,1,1,0,0,1,0,0,0,0,0,1,0
+13,Pillow Size,Pillow Size,1,1,4,0,0,1,1,0,0,0,1,0
+14,Light Source Type,Light Source,1,1,0,0,0,1,0,0,0,0,1,0
+15,Décor Style,Style,1,1,0,0,0,0,0,0,0,0,1,0
+16,Instrument Size,Instrument Size,1,1,0,0,0,0,1,0,0,0,1,0
+17,Fixture Finish Type,Finish,1,1,0,0,0,1,1,0,0,0,1,0
+18,Game Genre,Genre,1,1,0,0,1,0,0,0,0,0,1,0
+19,Book Format,Format,1,1,3,0,0,0,1,0,0,0,1,0
+21,Software Format,Format,1,1,0,0,0,1,1,0,0,0,1,0
+27,Microwave Type,Microwave Type,1,1,0,0,0,1,0,0,0,0,1,0
+28,Baby Carrier Type,Carrier Type,1,1,2,0,0,1,1,0,0,0,1,0
+29,Breast Pump Type,Breast Pump Type,1,1,0,0,0,1,0,0,0,0,1,0
+30,Language,Language,1,1,5,0,0,0,0,0,0,0,1,0
+31,Age Range,Age Range,1,1,1,0,1,0,0,0,0,0,1,0
+32,Age Group,Age Group,1,1,0,0,0,1,0,0,0,0,1,0
+33,Target Audience,Target Audience,1,1,0,0,0,0,0,0,0,0,1,0
+34,Gender,Gender,1,1,0,0,0,0,0,0,0,0,1,0
+35,Battery Type,Battery Type,1,1,0,0,0,1,0,0,0,0,1,0
+36,Health & Beauty Item Form,Form,1,1,0,0,1,0,0,0,0,0,1,0
+38,Fill Material,Fill Material,1,1,0,0,0,1,0,0,0,0,1,0
+39,Media Storage Capacity,Storage Capacity,1,1,0,1,0,0,1,0,0,0,1,0
+41,Device Compatibility,Device Compatibility,1,1,2,0,0,1,1,0,0,0,1,0
+44,Power Source,Power Source,1,1,0,0,0,1,0,0,0,0,1,0
+45,Width,Width,1,1,0,1,0,0,1,0,0,0,1,0
+46,Weight or Volume,Size,1,1,9,2,0,0,1,0,0,0,1,0
+47,Film Speed,Film Speed,1,1,0,0,0,1,1,0,0,0,1,0
+48,Film Color,Film Color,1,1,0,0,0,1,1,0,0,0,1,0
+50,Size - Free Text,Size,1,1,102,1,1,0,1,0,0,0,1,0
+51,Mirror Style,Mirror Style,1,1,0,0,0,1,0,0,0,0,1,0
+52,Drinking Glass Type,Glass Type,1,1,2,0,0,1,0,0,0,0,1,0
+53,Camera Lens Type,Lens Type,1,1,0,0,0,1,0,0,0,0,1,0
+54,Optical Zoom,Optical Zoom,1,1,0,1,1,0,1,0,0,0,1,0
+55,Clock Type,Clock Type,1,1,0,0,1,0,0,0,0,0,1,0
+56,Mattress Type,Mattress Type,1,1,0,0,0,1,0,0,0,0,1,0
+57,Knitting Needle Size,Knitting Needle Size,1,1,0,0,0,1,1,0,0,0,1,0
+58,Crochet Hook Size,Crochet Hook Size,1,1,0,0,0,1,1,0,0,0,1,0
+59,TV  and Laptop Screen Size,Screen Size,1,1,5,0,1,0,1,0,0,0,1,0
+60,Paper Size,Paper Size,1,1,0,0,0,1,1,0,0,0,1,0
+63,Baby Stage,Stage,1,1,0,0,0,1,1,0,0,0,1,0
+64,Formula Type,Formula Type,1,1,2,0,0,1,0,0,0,0,1,0
+65,Wattage,Wattage,1,1,0,1,1,0,1,0,0,0,1,0
+66,Home Theater System Channels,Channels,1,1,0,1,0,1,0,0,0,0,1,0
+67,Watts Per Channel,Watts Per Channel,1,1,0,2,1,0,0,0,0,0,1,0
+68,Tuner Type,Tuner Type,1,1,0,0,0,1,0,0,0,0,1,0
+69,Refrigerator Style,Refrigerator Style,1,1,0,0,0,1,0,0,0,0,1,0
+70,Appliance Capacity,Capacity,1,1,0,1,1,0,0,0,0,0,1,0
+72,Coverage Unit of Measure,Coverage,1,1,0,1,1,0,0,0,0,0,1,0
+73,Fan Type,Fan Type,1,1,0,0,0,1,0,0,0,0,1,0
+74,Range Installation Type,Range Installation Type,1,1,0,0,0,1,0,0,0,0,1,0
+75,Yarn Fiber,Yarn Fiber,1,1,0,0,0,1,0,0,0,0,1,0
+79,Bra Size,Bra Size,1,1,0,0,1,0,1,0,0,0,1,0
+80,Shoe Width,Shoe Width,1,1,0,0,1,0,1,0,0,0,1,0
+81,Old Diaper Size,Diapers Size,1,1,1,0,0,0,0,0,0,0,1,0
+82,old_Kids Clothing Size,Kids Clothing Size,1,1,0,0,0,0,1,0,0,0,1,0
+83,Kids Shoe Sizes,Kids Shoe Sizes,1,1,0,0,1,0,1,0,0,0,1,0
+84,Alpha Women's Regular Size,Women's Regular Size,1,1,0,0,1,0,1,0,0,0,1,0
+85,old_Men's General Regular Size,Size,1,1,0,0,1,0,1,0,0,0,1,0
+86,Men's Pant Size,Men's Pant Size,1,1,0,0,1,0,1,0,0,0,1,0
+87,Men's Dress Shirt Size,Men's Dress Shirt Size,1,1,0,0,1,0,1,0,0,0,1,0
+88,Product Material,Material,1,1,0,0,0,1,0,0,0,0,1,0
+89,Pet Life Stage,Life Stage,1,1,90,0,1,0,1,0,0,0,1,0
+90,Sheet Material,Material,1,1,2,0,0,1,0,0,0,0,1,0
+91,Bag Style,Bag Style,1,1,0,0,0,1,0,0,0,0,1,0
+93,Stone,Stone,1,1,0,0,1,0,1,0,0,0,1,0
+94,Hair Color,Hair Color,1,1,0,1,1,0,1,0,0,0,1,0
+95,Count Size,Count,1,1,0,2,1,0,1,0,0,0,1,0
+96,# of Players,# of Players,1,1,0,0,0,1,0,0,0,0,1,0
+97,Women's Shoe Size,Women's Shoe Size,1,1,0,0,1,0,1,0,0,0,1,0
+98,Men's Shoe Size,Men's Shoe Size,1,1,0,0,1,0,1,0,0,0,1,0
+99,Appliance Color Map,Appliance Color,1,1,3,0,0,1,0,0,0,0,1,0
+100,Furniture Material,Material,1,1,0,0,1,0,0,0,0,0,1,0
+101,Bird Type,Bird Type,1,1,0,0,0,1,0,0,0,0,1,0
+102,Small Animal Type,Small Animal Type,1,1,0,0,0,1,0,0,0,0,1,0
+104,Pet Food Special Diet,Special Diet,1,1,67,0,0,0,0,0,0,0,1,0
+106,Kids Shoe Width,Kids Shoe Width,1,1,0,0,1,0,1,0,0,0,1,0
+107,Video Format,Video Format,1,1,1,0,0,1,1,0,0,0,1,0
+108,MPAA Rating,MPAA Rating,1,1,0,0,0,1,0,0,0,0,1,0
+109,Subtitle Language,Subtitle Language,1,1,0,0,1,1,1,0,0,0,1,0
+111,Adult Product,Adult Product,1,1,0,0,0,0,0,0,0,0,1,0
+112,Movie & TV Genre,Genre,1,1,0,0,1,0,0,0,0,0,1,0
+113,Suit or Sport Coat Size,Suit Size,1,1,0,0,1,0,1,0,0,0,1,0
+114,Generic Size- free text with units,Size,1,1,0,2,0,0,0,0,0,0,1,0
+115,Dog Size,Dog Size,1,1,99,2,0,0,0,0,0,0,1,0
+116,"Generic Sizes (S,M, L, etc)",Size,1,1,0,0,1,0,1,0,0,0,1,0
+117,Flavor,Flavor,1,1,0,1,1,0,1,0,0,0,1,0
+118,Fragrance,Fragrance,1,1,0,1,1,0,1,0,0,0,1,0
+119,Color,Color,1,1,2,1,1,0,1,0,0,0,1,0
+121,Finish,Finish,1,1,0,1,1,0,1,0,0,0,1,0
+122,Appliance Color,Appliance Color,1,1,0,1,1,0,1,0,0,0,1,0
+123,Length,Length,1,1,0,2,1,0,1,0,0,0,1,0
+124,Height,Height,1,1,0,2,1,0,1,0,0,0,1,0
+125,Diaper Size,Diaper Size,1,1,2,1,1,0,1,0,0,0,1,0
+126,BTU,BTUs,1,1,0,2,1,0,0,0,0,0,1,0
+127,Threadcount,Threadcount,1,1,0,1,1,0,0,0,0,0,1,0
+128,Megapixels,Megapixels,1,1,0,1,1,0,1,0,0,0,1,0
+129,Furniture Finish,Furniture Finish,1,1,0,1,1,0,1,0,0,0,1,0
+130,Monitor Type,Monitor Type,1,1,1,0,0,1,0,0,0,0,1,0
+131,Service Plan,Service Plan,1,1,0,1,0,1,0,0,0,0,1,0
+132,Warranty Plan,Warranty Plan,1,1,0,1,1,0,0,0,0,0,1,0
+133,Alpha Women's General Maternity Size,Women's General Maternity Size,1,1,0,0,1,0,1,0,0,0,1,0
+134,GPS Feature,GPS Feature,1,1,0,1,1,0,0,0,0,0,1,0
+136,Hand Tool Type,Hand Tool Type,1,1,0,0,0,0,0,0,0,0,1,0
+137,Power Tool Type,Power Tool Type,1,1,0,0,0,0,0,0,0,0,1,0
+138,Hardware Finish Type,Hardware Finish Type,1,1,0,0,1,1,1,0,0,0,1,0
+139,Door Entry Side,Door Entry Side,1,1,0,0,1,1,1,0,0,0,1,0
+140,Ring Size,Ring Size,1,1,0,0,1,0,1,0,0,0,1,0
+141,Platform,Gaming Platform,1,1,0,0,1,0,1,0,0,0,1,0
+142,Bike Wheel Size,Bike Wheel Size,1,1,0,0,1,0,1,0,0,0,1,0
+143,Lens Color,Lens Color,1,1,0,1,1,0,1,0,0,0,1,0
+144,Airsoft Gun & Rifle Velocity,Airsoft Gun & Rifle Velocity,1,1,0,1,1,0,0,0,0,0,1,0
+145,Baseball Type,Baseball Type,1,1,0,0,0,1,0,0,0,0,1,0
+146,Bat Size,Bat Size,1,1,0,0,1,0,1,0,0,0,1,0
+150,Softball Type,Softball Type,1,1,0,0,0,1,0,0,0,0,1,0
+151,Team,Team,1,1,0,1,1,0,1,0,0,0,1,0
+152,Dimensional Size- built from Length X Width X Height,Product Dimensions,1,1,0,1,1,0,0,0,0,0,1,0
+153,Diameter,Diameter,1,1,97,2,1,0,1,0,0,0,1,0
+157,Hand Orientation,Hand Orientation,1,1,0,0,0,0,1,0,0,0,1,0
+160,Rug Size,Rug Size,1,1,0,0,0,1,0,0,0,0,1,0
+161,Rug Material,Rug Material,1,1,0,0,0,1,0,0,0,0,1,0
+163,Cookware Material,Cookware Material,1,1,2,0,0,1,0,0,0,0,1,0
+164,Contract Type,Contract Type,1,1,0,0,0,1,0,0,0,0,1,0
+165,Cell Phone Carrier,Carrier,1,1,2,0,1,1,1,0,0,0,1,0
+166,Phone Operating System,Phone Operating System,1,1,105,0,0,1,0,0,0,0,1,0
+167,TV Refresh Rate,Refresh Rate,1,1,104,0,1,0,1,0,0,0,1,0
+169,Decor Material,Material,1,1,0,0,0,1,0,0,0,0,1,0
+171,Make,Make,1,1,0,1,1,0,0,0,0,0,1,0
+172,Model,Model,1,1,8,1,1,0,1,0,0,0,1,0
+173,"Year - Display, Free Text",Year,1,1,0,1,1,0,0,0,0,0,1,0
+174,Camera Filter Diameter,Camera Filter Diameter,1,1,0,2,1,0,0,0,0,0,1,0
+177,Sleeping Bag Temperature Rating,Sleeping Bag Temperature Rating,1,1,0,1,1,0,0,0,0,0,1,0
+178,Brightness,Brightness,1,1,0,1,1,0,0,0,0,0,1,0
+179,Tent Capacity,Tent Capacity,1,1,0,0,0,1,0,0,0,0,1,0
+181,Wireless Standard,Wireless Standard,1,1,0,0,0,1,0,0,0,0,1,0
+182,Transmission Speed,Transmission Speed,1,1,0,1,1,0,0,0,0,0,1,0
+183,Processor Speed,Processor Speed,1,1,0,2,1,0,0,0,0,0,1,0
+197,Purifier Type,Purifier Type,1,1,0,1,0,1,0,0,0,0,1,0
+219,Hard Drive Size (OLD),Hard Drive Size,1,1,0,2,1,0,1,0,0,0,1,0
+225,# of Pieces,# of Pieces,1,1,0,1,1,0,1,0,0,0,1,0
+248,Frame Color,Frame Color,1,1,0,0,1,0,1,0,0,0,1,0
+264,Numeric Women's Petite Size,Women's Petite Size,1,1,0,0,1,0,1,0,0,0,1,0
+266,Dishwasher Installation Type,Installation Type,1,1,0,0,1,1,0,0,0,0,1,0
+268,Activity,Activity,1,1,0,0,0,0,1,0,0,0,1,0
+269,Art Style,Art Style,1,1,0,0,0,1,0,0,0,0,1,0
+270,Award Winners,Award Winners,1,1,1,0,0,0,0,0,0,0,1,0
+271,Watch Band Material,Watch Band Material,1,1,0,0,1,0,0,0,0,0,1,0
+273,Kids' Shoe Size - length only,Kids' Shoe Size,1,1,1,0,0,1,0,0,0,0,1,0
+275,old_Men Size,Men Size,1,1,0,0,0,1,0,0,0,0,1,0
+276,old_Kid Size,Kid Size,1,1,0,0,1,1,1,0,0,0,1,0
+282,Certifications,Certifications,1,1,104,0,0,1,0,0,0,0,1,0
+283,Connector Type,Connector Type,1,1,0,0,0,1,0,0,0,0,1,0
+285,Designer,Designer,1,1,0,1,0,1,0,0,0,0,1,0
+286,Dietary Needs,Dietary Needs,1,1,0,0,0,1,0,0,0,0,1,0
+287,Grade Level,Grade Level,1,1,0,0,0,1,0,0,0,0,1,0
+288,Grit Size,Grit Size,1,1,0,0,1,1,1,0,0,0,1,0
+290,Hubcap Size,Hubcap Size,1,1,0,0,0,1,0,0,0,0,1,0
+291,Inseam,Inseam,1,1,0,0,0,1,0,0,0,0,1,0
+292,League,League,1,1,0,0,0,1,0,0,0,0,1,0
+293,Lens Mount Compatibility,Lens Mount Compatibility,1,1,0,0,0,1,0,0,0,0,1,0
+296,TV Model Year Facet Filter,TV Model Year,1,1,4,0,0,1,0,0,0,0,1,0
+297,Needle Type,Needle Type,1,1,0,0,0,1,0,0,0,0,1,0
+298,Occasion,Occasion,1,1,0,0,0,0,0,0,0,0,1,0
+299,OEM/Compatible,OEM/Compatible,1,1,0,0,0,1,0,0,0,0,1,0
+300,Pattern,Pattern,1,1,4,0,0,1,1,0,0,0,1,0
+301,Platform Support,Platform Support,1,1,2,0,0,1,0,0,0,0,1,0
+303,RAM Technology,RAM Technology,1,1,0,0,0,1,0,0,0,0,1,0
+306,Rim Size,Rim Size,1,1,0,0,0,1,0,0,0,0,1,0
+307,Stroller Seating Capacity,Seating Capacity,1,1,0,0,0,1,0,0,0,0,1,0
+308,Shoe Style,Shoe Style,1,1,4,0,1,0,0,0,0,0,1,0
+310,Skin Type,Skin Type,1,1,0,0,0,0,0,0,0,0,1,0
+311,Theme,Theme,1,1,0,0,0,1,0,0,0,0,1,0
+312,US States & Regions,US States & Regions,1,1,0,0,0,1,0,0,0,0,1,0
+313,Vacuum Cleaner Features,Vacuum Cleaner Features,1,1,2,0,0,1,0,0,0,0,1,0
+314,Vehicle Type,Vehicle Type,1,1,0,0,0,1,0,0,0,0,1,0
+317,"Year - Facet Filter, Value",Year,1,1,0,0,0,1,0,0,0,0,1,0
+4.39849E+13,magnification strength,Magnification Strength,1,1,0,1,1,0,1,0,0,0,1,0
+4.39849E+13,lens width,Lens Width,1,1,0,1,1,0,1,0,0,0,1,0
+1.2434E+14,Appliance Max Power Consumption,Appliance Max Power Consumption,1,1,0,2,1,0,0,0,0,0,1,0
+1.37889E+14,Alpha Women's General Petite Size,Women's General Petite Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.37889E+14,Alpha Women's General Plus Size,Women's General Plus Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.37889E+14,Numeric Women's Petite Waist Size,Women's Petite Waist Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.37889E+14,Alpha Women's General Tall Size,Women's General Tall Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.38083E+14,Numeric Big & Tall Suit Size,Big & Tall Suit Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.41513E+14,Alpha Baby Generic Sizes,Baby Sizes,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Alpha Big Boy Generic Size,Big Boy Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Numeric Big Boy Size,Big Boy Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Boys Slim Size,Boys Slim Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Boys Husky Size,Boys Husky Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Alpha Little Girl Generic Size,Little Girl Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Numeric Little Girl Size,Little Girl Size,1,1,1,0,1,0,1,0,0,0,1,0
+1.41513E+14,Alpha Big Girl Generic Size,Big Girl Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Numeric Big Girl Size,Big Girl Size,1,1,2,0,1,0,1,0,0,0,1,0
+1.41513E+14,Girls Slim Size,Girls Slim Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.41513E+14,Girls Plus Size,Girls Plus Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.42193E+14,Numeric Boys Slim Size,Boys Slim Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.42193E+14,Numeric Boys Husky Size,Boys Husky Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.42193E+14,Numeric Big Girl Size,Big Girl Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.42193E+14,Numeric Girls Slim Size,Girls Slim Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.42193E+14,Numeric Girls Plus Size,Girls Plus Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.42193E+14,Numeric Toddler Shoe Size,Toddler Shoe Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.42193E+14,Numeric Little Kids Shoe Size,Little Kids Shoe Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.42193E+14,Numeric Big Kids Shoe Size,Big Kids Shoe Size,1,1,0,0,0,1,0,0,0,0,1,0
+1.44023E+14,Men's General Regular Size,Men's General Regular Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.44035E+14,Alpha Little Boy Generic Size,Little Boy Generic Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.44095E+14,Alpha General Big & Tall Size,General Big & Tall Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.441E+14,Numeric Little Boy Size,Little Boy Size,1,1,0,0,1,0,1,0,0,0,1,0
+1.96985E+14,Instrument Style,Style,1,1,0,1,1,0,1,0,0,0,1,0
+3.79147E+14,TV Display Type,TV Display,1,1,101,0,1,0,1,0,0,0,1,0
+3.7915E+14,TV Resolution,Resolution,1,1,102,0,1,0,1,0,0,0,1,0
+3.79152E+14,TV Model Year,Model Year,1,1,103,0,1,0,1,0,0,0,1,0
+3.79161E+14,TV Features,Features,1,1,105,0,1,0,1,0,0,0,1,0
+3.79162E+14,TV Inputs/Outputs,Inputs/Outputs,1,1,106,0,1,0,1,0,0,0,1,0
+3.79164E+14,TV Supported Internet,Supported Internet,1,1,107,0,1,0,1,0,0,0,1,0
+5.12039E+14,Age Use_Display,Age Use,1,1,6,1,1,0,0,0,0,0,1,0

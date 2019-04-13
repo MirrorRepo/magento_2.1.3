@@ -1,0 +1,61 @@
+<div class="row special-outer">
+	<div class="owl-carousel">
+		<?php
+		$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$subcategory_id = 110;
+		$category = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);
+		
+		$subcategories = $category->getChildrenCategories();
+		if (count($subcategories) > 0){	
+			$count = 1;
+			foreach($subcategories as $subcategory){
+				    $subcategory_id = $subcategory->getId();
+					$subcategory = $_objectManager->create('Magento\Catalog\Model\Category')->load($subcategory_id);
+					$subcategory_image  = $subcategory->getImageUrl();
+					$subcategory_name = $subcategory->getName();
+					$subcategory_url = $subcategory->getUrl();
+					$page_title = $subcategory->getMetaTitle();
+					?>
+						<div class="item">
+				             <div class="special_icon_left">
+						 		<a href="<?php echo $subcategory_url; ?>"><img src="<?php echo $subcategory_image; ?>"></a>
+						 	</div>
+						 	<div class="special_text_right">
+						 		<span><?php echo $page_title; ?></span>
+						 		<h3><a href="<?php echo $subcategory_url; ?>"><?php echo $subcategory_name; ?></a></h3>
+						 	</div>
+						 		<a href="<?php echo $subcategory_url; ?>" class="btn btn-read-more btn-<?php echo $count; ?>">Read More</a>
+			            </div>							
+					<?php
+					$count++;
+				}	
+			}
+		?>
+	</div>
+</div>	
+<script type="text/javascript">
+require([
+  "jquery",
+  "owlcarousel/minjs"
+ ], function($,owlCarousel){
+		$(".owl-carousel").owlCarousel({
+			items:3,
+			loop:true,
+			margin:10,
+			autoplay:true,
+			autoplayTimeout:4000,
+			autoplayHoverPause:false,
+		 	responsive: {
+		  		0: {
+				items: 1
+		  	},
+		  		600: {
+				items: 2
+		  	},
+		  		1000: {
+				items: 3
+		  	}
+			}
+		});
+	});
+</script>

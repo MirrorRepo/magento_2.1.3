@@ -1,0 +1,66 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Jet
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license     http://cedcommerce.com/license-agreement.txt
+ */
+/**
+ * @see \Ced\Jet\Block\Adminhtml\System\Config\Validate
+ */
+?>
+<script >
+    require(['prototype'], function() {
+
+//<![CDATA[
+        function validate() {
+            var validationMessage = $('validation_result');
+            params = {
+                userId: $('<?php  echo $block->escapeHtml($block->getApiUser()); ?>').value,
+                secretKey: $('<?php  echo $block->escapeHtml($block->getApiSecretKey()); ?>').value
+            };
+            new Ajax.Request('<?php  echo $block->escapeXssInUrl($block->getAjaxUrl()) ?>', {
+                parameters: params,
+                onSuccess: function(response) {
+                    var result = '<?php  echo $block->escapeHtml('Fields are required.') ?>';
+                    try {
+                        if (response.responseText.isJSON()) {
+                            response = response.responseText.evalJSON();
+                            result = response.message;
+                        }
+                        if (response.valid == 1) {
+                            var result = '<?php  echo $block->escapeHtml('Validate Successfully') ?>';
+                            validationMessage.removeClassName('hidden').addClassName('success')
+                        } else {
+                            validationMessage.removeClassName('hidden').addClassName('error')
+                        }
+                    } catch(e) {
+                        validationMessage.removeClassName('hidden').addClassName('error')
+                    }
+                    validationMessage.update(result);
+                }
+            });
+        }
+
+        window.validate = validate;
+//]]>
+
+    });
+</script>
+<div class="actions actions-validate">
+    <div id="validation_result" class="message-validation hidden"></div>
+    <button onclick="validate(); return false;" class="action-validate"
+            type="button" id="<?php echo $block->getHtmlId() ?>">
+        <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+</div>

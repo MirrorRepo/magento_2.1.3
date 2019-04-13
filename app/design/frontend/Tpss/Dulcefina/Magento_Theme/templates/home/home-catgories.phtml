@@ -1,0 +1,145 @@
+<?php 
+$categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+// category listing
+$cats = array();
+$categories =  $categoryHelper->getStoreCategories();
+foreach( $categories as $subcategory){
+	$category_url = $categoryHelper->getCategoryUrl($subcategory);
+	$category_name = $subcategory->getName();
+	$cats[$subcategory->getName()]=$subcategory;
+}
+ksort($cats);
+$heightarray = array("308", "277", "308", "308", "268", "308", "308", "310", "260", "248", "148", "148", "148", "148", "276", "276",
+    "307", "308", "212", "308");
+$response = array();
+$posts = array();
+$count = count($categories);
+$response['total']= $count;
+$i = 0;
+foreach($categories as $subcategory) { 
+	$catid = $subcategory->getId();
+	if($catid != 8  && $catid != 110){
+		$caturl = $subcategory->getUrl();
+		$catname = $subcategory->getName();    
+		$pid = array();    
+		$loadCategory  = $objectManager->create('Magento\Catalog\Model\Category')->load($subcategory->getId());
+		foreach ($loadCategory->getProductCollection()->addAttributeToSelect('*') as $product) {
+			$pid[] = $product->getId();    
+		}
+		if(count($pid) ){
+			$randomid = $pid[array_rand($pid)];    
+			$product = $objectManager->get('Magento\Catalog\Model\Product')->load($randomid);
+			$imageurl = $this->getUrl().'pub/media/catalog/product'.$product->getData('thumbnail');
+			$height = $heightarray[array_rand($heightarray)];
+			$page_title = $loadCategory->getMetaTitle();
+			$posts[] = array('image'=> ''.$imageurl.'', 'url'=> $caturl, 'width'=> '300', 'height'=> $height, 'price'=> $page_title, "name"=> $catname);
+			$i++;
+		  }
+  }
+}
+//print_r($posts);
+$response['result'] = $posts;
+$fp = fopen('waterfall/data/home/homecat.json', 'w');
+fwrite($fp, json_encode($response));
+fclose($fp);
+
+
+?>
+
+<link rel="stylesheet" href="<?php echo $block->getUrl(''); ?>waterfall/css/reset.css">
+<link rel="stylesheet" href="<?php echo $block->getUrl(''); ?>waterfall/css/waterfall.css">
+<!--    <div id="header">
+        <h1>no more data</h1>
+    </div>-->
+    <div id="container"></div>
+    <script type="text/x-handlebars-template" id="waterfall-tpl">
+    {{#result}}
+        <div class="item">
+            <div class="price">
+                <span class="price">{{price}}</span>
+            </div>
+            <a href="{{url}}" style="background-image:url('{{image}}');height='{{height}}';">
+                <img src="" style="visibility:hidden; width:{{width}};  height:{{height}}px "/>
+            </a>
+            <a class="home-imgtitle" href="{{url}}">
+                <span>{{name}}</span><span class="home-arwimg"></span>
+            </a>
+        </div>
+    {{/result}}
+    </script>
+ <script src="<?php echo $block->getUrl(''); ?>waterfall/js/libs/jquery/jquery.js"></script>
+    <script src="<?php echo $block->getUrl(''); ?>waterfall/js/libs/handlebars/handlebars.js"></script>
+    <script src="<?php echo $block->getUrl(''); ?>waterfall/js/waterfall.min.js"></script>
+    <script>
+    $waterfall = jQuery.noConflict();           
+    $waterfall('#container').waterfall({
+    itemCls: 'item',
+    colWidth: 300,  
+    gutterWidth: 15,
+    gutterHeight: 15,
+    checkImagesLoaded: false,
+    callbacks: {
+        renderData: function (data, dataType) {
+            var tpl,
+                template,
+                resultNum = data.total;                
+            if (resultNum === <?php echo $count;?>) {
+                $waterfall('#container').waterfall('pause', function() {
+                    //$waterfall('#waterfall-message').html('<div id="header" style="text-align:center;"><h1>no more data</h1></div>');
+                    //alert('no more data');
+                });
+            }    
+            if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
+                tpl = $waterfall('#waterfall-tpl').html();
+                template = Handlebars.compile(tpl);
+                    return template(data);
+            } else { // html format
+                return data;
+            }
+        }
+    },
+    path: function(page) {
+        return '<?php echo $block->getUrl(''); ?>waterfall/data/home/homecat.json?page='+page;
+    }
+});
+</script>
+<style>
+    .item {
+        padding: 0px;
+        width: 300px;
+    }
+    .item a {
+        float:left;
+        background-position: 50% 50%;
+        background-clip: border-box;
+        background-color: rgba(0, 0, 0, 0);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        width: 300px !important;
+    }        
+    .price {
+        color: #A8A8A8;
+        font-family: helvetica;
+        font-size: 15px;
+        font-weight: normal;
+        margin-left: 5px;
+        margin-top: 3px;
+        position: absolute;
+    }
+    .home-imgtitle {
+        opacity: 0.6;
+    }
+    .home-imgtitle span {
+        opacity: 1;
+        color: #FFFFFF !important;       
+        font-size: 18px !important;
+    }
+    .item:hover a.home-imgtitle{
+        background: none repeat scroll 0 0 #E1931E;
+    }
+</style>
+

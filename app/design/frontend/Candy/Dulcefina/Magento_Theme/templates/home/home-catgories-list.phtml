@@ -1,0 +1,46 @@
+<div class="row category-outer">
+<?php 
+	$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
+
+	foreach($categoryHelper->getStoreCategories() as $category){
+		$category_id = $category->getId();
+		
+		$loadCategoryById = $_objectManager->create('Magento\Catalog\Model\Category')->load($category_id);
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+		$productCollection->addAttributeToSelect('*');
+		$productCollection->addCategoryFilter($loadCategoryById);
+		$productCollection->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+		$productCollection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+		$stockHelper = $objectManager->create('Magento\CatalogInventory\Helper\Stock');	
+		$stockHelper->addInStockFilterToCollection($productCollection);
+		$category_product_count = count($productCollection);
+		
+		$object_manager = $_objectManager->create('Magento\Catalog\Model\Category')->load($category_id);
+		
+		$page_title = $object_manager->getMetaTitle();
+		$category_url = $categoryHelper->getCategoryUrl($category);
+		$category_name = $category->getName();
+		$category_desc = $category->getDescription();
+		
+		$subcategory_image = "";
+		if($object_manager->getImageUrl()){
+			$subcategory_image = $object_manager->getImageUrl();
+		}else{
+			$subcategory_image  = $block->getUrl('').'pub/media/catalog/category/category-icon1.png';
+		}
+		
+		if($category_id != 8){
+		?>
+		<div class="col-md-4 col-sm-6 col-xs-6 category_box">
+		 	<div class="category_icon_left">
+		 		<a href="<?php echo $category_url; ?>"><img src="<?php echo $subcategory_image; ?>"></a>
+		 	</div>
+		 	<div class="category_text_right">
+		 		<h3><a href="<?php echo $category_url; ?>"><?php echo $category_name; ?></a><span class="home_product_total_count">(<?php echo $category_product_count; ?>)</span></h3>
+		 		<div class="category-desc"><?php echo $category_desc; echo $page_title; ?></div>
+		 	</div>
+		</div>
+<?php } }?>
+</div>

@@ -1,0 +1,256 @@
+<?php $categories = Mage::getModel('catalog/category')
+    ->getCollection()
+    ->addAttributeToSelect('*')
+    ->addAttributeToFilter('is_active', 1)		->addAttributeToFilter('include_in_menu', 1)
+    ->addAttributeToSort('name','ASC');
+$root_category = Mage::getModel('catalog/category')->load(2);
+$subcategories = $root_category->getChildren();
+$i = 0;
+foreach(explode(',', $subcategories) as $subcategory){
+    $categoryhome = Mage::getModel('catalog/category')->load($subcategory);
+    $cats[$categoryhome->getName()]=$subcategory;
+}
+ksort($cats);
+foreach($categories as $subcategory) {  
+    $catid = $subcategory->getId();
+    $parentId=Mage::getModel('catalog/category')->load($catid)->getParentId();
+    if($catid != 8 && $parentId != 1 && $parentId != 8 && $parentId != 110 && $catid != 110){
+    $category = Mage::getModel('catalog/category')->load($catid);
+    $caturl = $category->getUrl();
+    $catname = $category->getName();    
+    $pid = array();    
+    foreach ($category->getProductCollection() as $product) {
+       $pid[] = $product->getId();
+    }    
+    $randomid = $pid[array_rand($pid)];    
+    $product= Mage::getModel('catalog/product')->load($randomid);
+    $margin="";
+       
+       switch ($i){
+           case 0: $width='415px'; $height='205px'; $margin='margin:0 0px 0px 0'; break;
+           case 1: $width='312px'; $height='205px'; break;
+           case 2: $width='232px';  $height='200px'; break;
+           case 3: $width='250px'; $height='200px'; $margin='margin:0px 0px'; break;
+           case 4: $width='235px';  $height='200px'; break;
+           case 5: $width='300px'; $height='500px';  break;
+           case 6: $width='310px'; $height='206px'; break;
+           case 7: $width='362px'; $height='500px'; break;
+           case 8: $width='275px'; $height='220px'; $margin='margin-right:3px;';  break;
+           case 9: $width='365px'; $height='220px'; break;
+           case 10: $width='320px'; $height='220px'; $margin='margin-right:3px;'; break;
+           case 11: $width='320px'; $height='220px'; $margin='margin-right:2px;';break;
+           case 12: $width='320px'; $margin='margin-right:4px;'; break;
+           case 13: $width='240px';  break;
+           case 14: $width='324px';  break;
+           case 15: $width='406px';  break;         
+           case 16: $width='300px'; $margin='margin-right:4px;'; break;
+           case 17: $width='370px'; $height='270px'; break;
+           case 18: $width='300px'; $height='270px'; $margin='margin-right:6px;'; break;
+           case 19: $width='400px'; $height='270px'; $margin='margin-right:2px;';break;
+           case 20: $width='320px'; $margin='margin-right:4px;'; break;
+           case 21: $width='250px';  break;
+           case 22: $width='320px';  break;
+           case 23: $width='406px';  break;
+           default : $width='30%'; break;
+     }
+     
+     /* first set */   
+     $imageurl = Mage::helper('catalog/image')->init($product, 'image')->keepFrame(true)->resize();
+      $page_title = $category->getMetaTitle();     
+     if( $i < 5){         
+         if($i == 0){
+            echo "<div style='float:left; width:100%;'>"; 
+            echo "<div style='width:75%;float:left;'>";
+            echo "<div style='float:left; width:100%;'>";
+         }
+         if($i==2){echo "<div style='float:left; width:100%;'>";}
+            echo "<div class='home-images' style='width:".$width."; height:200px; ".$margin."'><a class='homeimg-link' href='".$caturl."' style='float:left; background-size: cover !important; background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent;  width:".$width."; height:".$height."; '></a>
+            <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>    
+            <div class='page-title1'>".$page_title."</div>"."</div>";
+       
+        if($i==1){echo "</div>";}    
+        if($i == 4){
+              echo "</div>";
+              echo "</div>";
+              echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-ad-image')->toHtml();
+              echo "</div>";
+        }
+    }
+    
+    /* first set ends here */ 
+    
+    
+    
+    
+    /* second set*/
+    
+    if($i>4 && $i < 8){        
+      
+        if($i==5){         
+           echo "<div style='float:left;width:100%;'>";
+        }
+        if($i == 6){
+             echo '<div style="float:left; width:31%; height:500px; margin:2px 6px 2px -2px;" >'.$this->getLayout()->createBlock('cms/block')->setBlockId('friends-club')->toHtml().
+             "<div class='home-images' style=' height: 196px; width: 99.3%; ".$margin."'><a class='homeimg-link' width: 100%;' href='".$caturl."' style='float:left; background-size: cover !important;  background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent;  width:".$width."; height:".$height."; '></a>
+             <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>   
+            <div class='page-title1'>".$page_title."</div>"."</div>
+            </div>";
+        }
+        if($i != 6){
+            echo "<div class='home-images' style='width:".$width."; height:".$height.";'><a class='homeimg-link' href='".$caturl."' style='float:left; background-size: cover !important; background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent;  width:".$width."; height:".$height." '></a>
+             <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+            <div class='page-title1'>".$page_title."</div>"."</div>";
+        }
+            
+        if($i == 7){
+          echo "</div>";
+        }
+    }
+    /* second set ends here */
+    
+    
+    
+    /* third set */
+    if($i > 7 && $i < 13 ){       
+      
+       
+       if($i < 12){
+        if( $i == 8){  
+            echo "<div style='float:left; width:100%;'>";
+            echo "<div style='float: left; height: 450px; width:66%; margin-right:0px;'>";
+            echo "<div style='float: left; width:100%;'>";
+        }
+        if($i == 10){echo "<div style='float: left; width:100%;'>";}
+        echo "<div class='home-images' style='width:".$width."; height:".$height.";".$margin." float:left;'><a class='homeimg-link' href='".$caturl."' style='float:left; background-size: cover !important;  background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent;  width:".$width."; height:".$height."; '></a>
+        <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+        <div class='page-title1'>".$page_title."</div>"."</div>";
+        if($i==9){echo "</div>";}
+        if( $i == 11){
+            echo "</div></div>";
+        }
+       }     
+       
+       if( $i == 12){           
+         echo "<div class='home-images' style='float: left; height: 450px; margin-top: 2px; width: 32.5%; ".$margin."'>
+                <a class='homeimg-link' href='".$caturl."' style='float:left; background-size: cover !important;  background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent;  width:".$width."; height:100%;'></a>
+                 <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+        <div class='page-title1'>".$page_title."</div>"."</div>";
+        echo "</div>"; 
+       }  
+       
+    }
+    /* third set ends here */
+   
+    
+    /* Fourth set */
+    if( $i > 12 && $i < 16 ){       
+        if($i==13){            
+            echo "<div style='float:left; width:100%; height:270px; margin-top:2px;margin-bottom:6px;'>";
+        } 
+        echo "<div class='home-images' style='float:left; height:100%; margin:2px 4px;".$margin."width:".$width."'>
+                <a class='homeimg-link' href='".$caturl."' style='float:left; background-size: cover !important;  background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent;  width:".$width."; height:100%; '></a>
+                 <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+        <div class='page-title1'>".$page_title."</div>"."</div>";
+        if($i==15){
+            echo "</div>";
+        }
+    }
+    /* Fourth set ends here */
+    /* Fifth set */
+      if( $i > 15 && $i < 19 ){       
+        if($i==16){            
+            echo "<div style='float:left; width:100%; height:270px; margin-top:2px;margin-bottom:6px;'>";
+        } 
+        echo "<div class='home-images' style='float:left; height:100%; margin:2px 4px;".$margin."width:".$width."'>
+                <a class='homeimg-link' href='".$caturl."' style='float:left; background-size: cover !important;  background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent;  width:".$width."; height:100%; '></a>
+                 <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+        <div class='page-title1'>".$page_title."</div>"."</div>";
+        if($i==18){
+            echo "</div>";
+        }
+    }
+       /* Fifth set ends here */
+    /* Sixth set */
+    if( $i > 18 && $i < 22 ){       
+        if($i==19){            
+            echo "<div style='float:left; width:100%; height:270px; margin-top:5px;margin-bottom:6px;'>";
+        } 
+        echo "<div class='home-images' style='float:left; height:100%; margin:2px 4px;".$margin."width:".$width."'>
+                <a class='homeimg-link' href='".$caturl."' style='float:left; background-size: cover !important;  background: url(".$imageurl.")  no-repeat scroll 50% 50% transparent; width:".$width."; height:100%; '></a>
+                 <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+        <div class='page-title1'>".$page_title."</div>"."</div>";
+        if($i==21){
+            echo "</div>";
+        }
+    }    
+       /* Sixth set */
+    /*if($i > 15 && $i < 21 ){       
+      
+       
+       if($i < 20){
+        if( $i == 16){  
+            echo "<div style='float:left; width:100%;'>";
+            echo "<div style='float: left; height: 450px; width:66%; margin-right:4px;'>";
+            echo "<div style='float: left; width:100%;'>";
+        }
+        if($i == 18){echo "<div style='float: left; width:100%;'>";}
+        echo "<div class='home-images' style='width:".$width."; height:".$height.";".$margin." float:left;'><a class='homeimg-link' href='".$caturl."' ><img style='width:auto; height:auto;' src='".$imageurl."' alt='' /></a>
+        <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+        </div>";
+        if($i==17){echo "</div>";}
+        if( $i == 19){
+            echo "</div></div>";
+        }
+       }     
+       
+       if( $i == 20){           
+         echo "<div class='home-images' style='float: left; height: 445px; margin-top: 2px; width: 33%;'>
+                <a class='homeimg-link' style='float:left; width:100%; height:100%;' href='".$caturl."' ><img style='width:auto; height:auto;' src='".$imageurl."' alt='' /></a>
+                 <a href='".$caturl."' class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></a>
+        </div>";
+        echo "</div>"; 
+       }  
+       
+    }*/
+    
+    /* third set ends here */
+    
+    /*default*/
+//    if( $i>15){
+//      echo "<div style='border:1px solid #717171; float:left; height:225px; margin:2px 4px;".$margin."width:".$width."'>
+//                <a style='float:left; width:100%; height:100%;' href='".$caturl."' ><img style='width:100%; height:100%;' src='".$imageurl."' alt='' /></a>
+//                <div class='home-imgtitle'><span>".$catname."</span><span class='home-arwimg'></span></div>    
+//        </div>";      
+//    }
+    /* default */
+    
+   
+    
+    
+    $i++;
+    }
+}
+
+?>
+
+<style>
+    .home-images{
+        overflow: hidden;          
+    }
+    .homeimg-link {
+        text-align: center;
+    }
+    .home-ad {
+    margin-bottom: 4px;
+    margin-top: 3px;
+    }
+    .page-title1 {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-top: 3px;
+    position: absolute;
+    font-size: 15px;
+    color: #197909;
+    font-family: helvetica; 
+    }
+</style>
